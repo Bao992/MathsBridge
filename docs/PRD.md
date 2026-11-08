@@ -1,0 +1,1479 @@
+Project status: Planning and design only. The app has not been built.
+Stitch design drafts have been generated; the GitHub repository has not
+yet been created.
+
+MathsBridge — Product Requirements Document (PRD)
+
+Version: v0.5
+
+Status: Draft — revised working version; pending facilitator approval;
+app development has not started
+
+Date: 29 October 2026
+
+\> **Scope decision:** v1 is a responsive web app with reviewed Sepedi
+explanations, English Mathematics terms, worked examples,
+multiple-choice practice, rule-based progress analysis, and limited
+caregiver support. Live classroom recording/transcription is deferred.
+Administrative details and production-readiness checks that cannot be
+known from the supplied materials are flagged rather than invented.
+
+# Document details
+
+| **Field**                 | **Answer**                                                                                     |
+|---------------------------|------------------------------------------------------------------------------------------------|
+| Product name              | MathsBridge                                                                                    |
+| Author(s)                 | Bao Kekana                                                                                     |
+| Course code and cohort    | To be confirmed from course instructions; not supplied yet.                                    |
+| Facilitator / reviewer    | To be confirmed; not supplied yet.                                                             |
+| Link to original app idea | MathsBridge App Concept Document submitted; add its link only if the course requires it.       |
+| GitHub username           | Bao992                                                                                         |
+| GitHub repository         | Not created yet. Do not present the username as a repository URL.                              |
+| Version                   | v0.5                                                                                           |
+| Status                    | Draft — revised planning stage; pending facilitator approval; app development has not started. |
+
+## Change log
+
+| **Version** | **Date**    | **Section(s)**                               | **What changed**                                                                                                                                                                                                                                                                                                                            | **Regenerated?**                                                     |
+|-------------|-------------|----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| v0.1        | 28 Oct 2026 | All                                          | First full draft based on MathsBridge concept; MVP scope defined                                                                                                                                                                                                                                                                            | None                                                                 |
+| v0.2        | 28 Oct 2026 | Product identity, overview, document details | Confirmed product name as MathsBridge; clarified Sepedi is the initial language and other languages are a future direction; removed student-number field and clarified app/repository are not created yet.                                                                                                                                  | None                                                                 |
+| v0.3        | 29 Oct 2026 | 8.1–8.3, 8.2 S1, 7.2, 14                     | Corrected Log In navigation to S11; extended shared-component coverage to S11–S12; recorded unresolved Add learner/pairing flow as a design TODO before Stitch generation.                                                                                                                                                                  | Prompts prepared; TODOs listed                                       |
+| v0.5        | 29 Oct 2026 | Document details, 13.3, 15                   | Recorded the confirmed student name (Bao Kekana), no student number, GitHub username (Bao992), and the current state of work: Stitch design drafts exist, but the app and GitHub repository have not been built/created. Reaffirmed that unapproved features generated by Stitch are not requirements; the PRD remains the source of truth. | Updated after Stitch design review; unresolved questions remain TODO |
+
+v0.3 \| 29 Oct 2026 \| Sections 7.2, 8.1–8.3, 13.3 and 14 \| Corrected
+the Welcome-to-Log-In route to S11, clarified shared component coverage
+for S11–S12, and recorded the missing Add Learner/pairing screen as an
+unresolved design question. Stitch prompts prepared; unresolved details
+remain TODO. \| Prompts generated; TODOs listed
+
+# 1. Product overview
+
+## 1.1 Product name
+
+MathsBridge
+
+## 1.2 One-line pitch
+
+MathsBridge is a planned multilingual Mathematics learning companion.
+The first version will help Sepedi-speaking Grade 4–7 learners
+understand selected Mathematics topics through reviewed Sepedi
+explanations linked to the English terms used at school.
+
+## 1.3 Problem statement
+
+Some Sepedi-speaking learners in Grades 4–7 may understand a
+mathematical idea less well when explanations and learning resources use
+English they are still developing. Learners may pause lessons to
+translate terms, ask someone for help, or memorise an example without
+understanding why it works. The project will test this problem with 5–10
+learners or caregivers rather than assume all learners experience it in
+the same way. The first version focuses on selected CAPS-aligned
+Mathematics topics and does not replace classroom teaching.
+
+## 1.4 Solution
+
+A learner chooses a grade and topic, reads a teacher-reviewed
+explanation in Sepedi, sees the matching English mathematical terms, and
+follows a worked example. The learner answers short practice questions
+and receives feedback tied to the answer. The app records attempts by
+topic and summarises strengths and topics to practise again. A caregiver
+can view a limited progress summary and suggested home activities, but
+cannot change attempts or see another learner’s records.
+
+## 1.5 Platform
+
+Web app (browser). Build and test the responsive web app first.
+Dedicated Android and iPhone apps are outside v1.
+
+## 1.6 Vision
+
+MathsBridge is intended to grow into a multilingual Mathematics learning
+companion. Sepedi is the planned starting language; additional South
+African languages may be added over time after learner validation,
+careful translation and review by fluent speakers and Mathematics
+educators. More CAPS Mathematics topics may be added as the content and
+team capacity grow. Teacher-managed learning groups remain outside v1
+and are not a delivery commitment.
+
+## 1.7 Key terms
+
+| **Term**          | **Exact meaning**                                                                   |
+|-------------------|-------------------------------------------------------------------------------------|
+| Topic             | One CAPS-aligned Mathematics concept within a grade, such as fractions.             |
+| Lesson            | A teacher-reviewed explanation and worked example for one topic.                    |
+| Practice question | A question a learner answers to check understanding.                                |
+| Attempt           | One submitted answer, including result and submission time.                         |
+| Progress summary  | Topic-level view of attempts, accuracy and suggested next practice.                 |
+| Caregiver         | Parent/guardian linked to a learner with permission to view that learner’s summary. |
+
+# 2. Users, personas and roles
+
+## 2.1 Primary user
+
+Learners approximately 9–13 years old in Grades 4–7 in South Africa,
+especially Sepedi-speaking learners who benefit from Mathematics
+explanations in Sepedi while learning English school terminology. Tech
+comfort: low to medium. Devices: shared/personal Android phone, tablet
+or school computer. Connectivity may be prepaid mobile data and
+intermittent; sign-in and loading lessons require internet in v1.
+
+## 2.2 Secondary users
+
+Parent/guardian caregivers supporting practice at home. A
+teacher/content reviewer is an operational need, but v1 has no teacher
+screens; the project owner maintains reviewed content through the
+database dashboard.
+
+## 2.3 Personas
+
+**Persona 1 — Lerato M., 11, Learner.** Grade 5 learner in Limpopo;
+shared Android phone and prepaid data; tech comfort medium; speaks
+Sepedi and is developing English. Goal: understand fractions before
+class exercises. Frustration: understands a Sepedi explanation but gets
+stuck on English terms in class. Help: Sepedi explanation, English
+terms, visual worked example and practice in one lesson. Quote: “I
+understand the idea in Sepedi, but I also need the English words from
+class.”
+
+**Persona 2 — Mpho R., 38, Caregiver.** Parent/guardian in Limpopo;
+Android phone and prepaid data; tech comfort low to medium; speaks
+Sepedi and English. Goal: help a child practise after school.
+Frustration: may not know the exact school topic or English terminology.
+Help: topic summary and a home activity. Quote: “Show me what my child
+is practising and one thing we can do together.”
+
+**Persona 3 — Thabo K., 12, Learner.** Grade 7 learner using a school
+computer or family phone; tech comfort medium; speaks Sepedi and
+English. Goal: prepare for a fractions/decimals test. Frustration:
+online explanations may move too quickly or use unfamiliar vocabulary.
+Help: revisit a topic, retry questions and see which topic needs
+practice. Quote: “I want to know which part I should practise again.”
+
+## 2.4 Roles and permissions
+
+| **Role**              | **How role is obtained**                                                  | **Can do**                                                                               | **Cannot do / enforcement**                                                                                                    |
+|-----------------------|---------------------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Learner               | Caregiver creates or approves learner profile                             | View published lessons, answer questions, view own progress in caregiver-managed session | Cannot view other learners, edit content or alter results. Enforce through authenticated session checks and database policies. |
+| Caregiver             | Registers with email, verifies it and links learner using a one-time code | View linked learner’s progress and home activities, unlink learner, manage own account   | Cannot edit attempts, access unlinked learners or publish content. Enforce active caregiver–learner relationship in database.  |
+| Content administrator | Project owner, through database dashboard only                            | Create/review/publish topics, lessons, questions and activities                          | No admin screens in v1; normal users have no write access to published content tables.                                         |
+
+## 2.5 Admin
+
+Admin work is done directly in the Supabase dashboard, with no admin
+screens in v1.
+
+# 3. Goals, success metrics and non-goals
+
+## 3.1 Goals
+
+| **ID** | **Goal**                                   | **Metric**                                                                  | **Target**                                    | **How to check**                          |
+|--------|--------------------------------------------|-----------------------------------------------------------------------------|-----------------------------------------------|-------------------------------------------|
+| G1     | Learners complete a lesson and practice    | Test learners completing one lesson and at least 3 answers                  | At least 7 of 10 in supervised usability test | Record lesson completion and attempt rows |
+| G2     | Progress analysis matches the scoring rule | Correct summary labels across predefined cases                              | 100% of 10 test cases                         | Compare displayed status against BR6      |
+| G3     | Learners can complete core learning flow   | Learners completing grade → topic → lesson → answer → feedback without help | At least 8 of 10 test learners                | Observe a 10-minute test                  |
+
+## 3.2 Non-goals
+
+1\. No live classroom recording or automatic transcription in v1; this
+adds consent, accuracy, storage and child-privacy complexity.
+
+2\. No AI-generated explanations or open chatbot in v1; mathematical and
+Sepedi content must be reviewed.
+
+3\. No automatic import of an entire syllabus or textbook; v1 has a
+small, manually mapped CAPS-aligned topic set.
+
+4\. No teacher dashboard, class management, grading system or school
+integration in v1.
+
+5\. No leaderboard, learner messaging or social features; they are
+unnecessary to test the core problem and add child-safety risks.
+
+6\. No diagnosis of learning disabilities or intelligence; progress is a
+practice indicator only.
+
+# 4. Features, business rules and notifications
+
+## 4.1 Feature list
+
+| **ID** | **Feature**                          | **User actions**                                                 | **Priority** | **Goal** | **Stories** | **Screens**    |
+|--------|--------------------------------------|------------------------------------------------------------------|--------------|----------|-------------|----------------|
+| F1     | Caregiver access                     | Sign up, verify email, log in/out, create/manage learner access  | Must         | G1       | US1, US2    | S1–S3, S10, M1 |
+| F2     | Grade and topic selection            | Choose Grades 4–7 and browse published topics for grade          | Must         | G1, G3   | US3         | S4, S5         |
+| F3     | Bilingual lesson                     | Read Sepedi explanation, English terms and worked example        | Must         | G1, G3   | US4         | S6             |
+| F4     | Practice and feedback                | Answer multiple-choice questions and see correctness/explanation | Must         | G1, G3   | US5         | S7             |
+| F5     | Topic progress analysis              | See attempts, accuracy and rule-based status for each topic      | Must         | G2, G3   | US6         | S8             |
+| F6     | Caregiver progress and home activity | View linked learner’s topic summary and suggested activity       | Should       | G1       | US7         | S9             |
+| F7     | Lesson feedback                      | Flag confusing translation or explanation                        | Should       | G3       | US8         | S6, M2         |
+
+## 4.2 MVP definition
+
+A caregiver-managed learner can select a published Grade 4–7 Mathematics
+topic, read a reviewed Sepedi explanation with English terms and a
+worked example, answer at least three practice questions, and view a
+rule-based topic progress summary.
+
+## 4.3 Future features
+
+Teacher dashboard and class codes; teacher-approved typed/uploaded class
+notes; offline lesson packs; more home languages; reviewed audio
+explanations; classroom transcription only after consent, privacy and
+accuracy requirements are defined.
+
+## 4.4 Business rules
+
+| **ID** | **Exact rule**                                                                                                                                                                                                                                                                     | **Used by** |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| BR1    | Learners see only topics, lessons and questions marked Published. Draft and Archived content is not shown.                                                                                                                                                                         | F2, F3, F4  |
+| BR2    | Each topic belongs to exactly one grade and has a unique positive topic order within that grade. A grade must be selected before its topics are listed.                                                                                                                            | F2          |
+| BR3    | A lesson can be Published only when it has a Sepedi explanation, at least one English term with Sepedi meaning, one worked example and reviewer/source note.                                                                                                                       | F3          |
+| BR4    | V1 question type is single-answer multiple choice with 2–4 options and exactly one correct option. Store selected option, correctness and submission time. Attempts cannot be edited; a learner may submit a new attempt.                                                          | F4          |
+| BR5    | After submission, show “Correct. Well done!” or “Not quite. Review the explanation and try another question.” Show the question explanation and “Next question”.                                                                                                                   | F4          |
+| BR6    | Topic status: 0 attempts = “Not started”; 1–4 = “Practising”; 5+ attempts with accuracy ≥80% = “Doing well”; 5+ attempts with accuracy \<80% = “Practise again”. Accuracy = correct attempts ÷ total attempts × 100, rounded to nearest whole percent. This is not a school grade. | F5, F6      |
+| BR7    | Progress lists all attempts grouped by topic, with the 5 most recently attempted topics first. Show total attempts, correct attempts, rounded accuracy and status.                                                                                                                 | F5, F6      |
+| BR8    | Caregiver access exists only while caregiver–learner link is Active. Pairing codes are single-use and expire after 24 hours. Unlinking removes caregiver access immediately but does not delete learner history.                                                                   | F1, F6      |
+| BR9    | No public learner profiles, ads, location tracking or public sharing of progress in v1.                                                                                                                                                                                            | F1, F5, F6  |
+| BR10   | Feedback category must be “Sepedi wording”, “Mathematics explanation” or “Other issue”. Optional note maximum 300 characters. Feedback does not change lesson content.                                                                                                             | F7          |
+| BR11   | V1 has at least 2 published topics per grade (8 total) and at least 3 questions per topic. If none available, show “No lessons are available for this grade yet.”                                                                                                                  | F2, F4      |
+
+## 4.5 Notifications
+
+None in v1. Use on-screen confirmation; no push, email or SMS
+notifications beyond authentication emails.
+
+# 5. Accounts and sign-in
+
+| **Decision**       | **Answer**                                                                                                                                                                                                                                                     |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Sign-up            | Caregiver email + password. Caregiver manages learner profile; no independent child password in initial MVP.                                                                                                                                                   |
+| Who may sign up    | Caregivers aged 18+ with email address. Learners cannot self-register.                                                                                                                                                                                         |
+| Minimum age        | Caregiver must be 18+. Learners are under 18 and use caregiver-created profiles with guardian consent.                                                                                                                                                         |
+| Email verification | Required before caregiver can create/link learner. Before verification, show verification notice and resend option only.                                                                                                                                       |
+| Password rules     | At least 10 characters; show/hide toggle; Supabase Auth handles passwords.                                                                                                                                                                                     |
+| Forgot password    | Single-use Supabase reset link expires after 60 minutes; success returns to Log In.                                                                                                                                                                            |
+| Failed log-ins     | After 5 consecutive failures, show “Too many sign-in attempts. Wait 15 minutes and try again.” Use provider throttling where available; do not reveal whether email exists.                                                                                    |
+| Stay logged in     | Supabase session persists until sign-out or provider expiry.                                                                                                                                                                                                   |
+| Log out            | S10 → “Log out” → M1 confirmation. Clear local session and return to S1.                                                                                                                                                                                       |
+| Delete account     | S10 → confirmation. Delete caregiver profile and links; learner data is retained only if another active caregiver remains. Otherwise delete learner profile and associated progress within 30 days. Confirm retention rule with facilitator before production. |
+| Change email/phone | Email change through Supabase Auth with new-address verification. Phone number not collected in v1.                                                                                                                                                            |
+
+# 6. User stories, acceptance criteria and edge cases
+
+## 6.1 Stories
+
+**US1 — F1.** As a caregiver, I want to create an account and verify my
+email so that I can manage learner access.
+
+- T-US1-1: Given a new caregiver with valid email and password ≥10
+  characters, when Sign Up is submitted, then show “Check your email to
+  verify your account.” and send verification email.
+
+- T-US1-2 (unhappy): Given an invalid request or existing email, when
+  submitted, then show “We couldn’t create your account. Check your
+  details or try signing in.” without revealing account existence.
+
+**US2 — F1.** As a caregiver, I want to sign in and open a linked
+learner so that learning can continue.
+
+- T-US2-1: Given a verified caregiver with a linked learner, when
+  sign-in succeeds, then S3 shows linked learner profiles.
+
+- T-US2-2 (unhappy): Given incorrect credentials, when Log In is
+  submitted, then show “Email or password is incorrect.” and retain the
+  email field.
+
+**US3 — F2.** As a learner, I want to choose my grade and topic so that
+I can study the Mathematics concept I need.
+
+- T-US3-1: Given published topics, when Grade 5 is selected on S4, then
+  S5 lists only published Grade 5 topics in topic order.
+
+- T-US3-2 (unhappy): Given a grade with no published topics, when
+  opened, then S5 shows “No lessons are available for this grade yet.”
+  and “Choose another grade”.
+
+**US4 — F3.** As a learner, I want a Sepedi explanation with English
+terms and a worked example so that I can connect it to classroom
+language.
+
+- T-US4-1: Given a published lesson, when S6 opens, then it shows Sepedi
+  explanation, English terms, worked example and “Start practice”.
+
+- T-US4-2 (unhappy): Given lesson content fails to load, then show “This
+  lesson couldn’t load. Check your connection and try again.” and a
+  Retry button.
+
+**US5 — F4.** As a learner, I want to answer questions and receive
+feedback so that I can check understanding.
+
+- T-US5-1: Given a question with 2–4 options, when one is selected and
+  “Check answer” is pressed, then save one attempt and show correctness
+  plus explanation.
+
+- T-US5-2 (unhappy): Given no option is selected, when “Check answer” is
+  pressed, then show “Choose an answer before continuing.” and save no
+  attempt.
+
+**US6 — F5.** As a learner, I want to see topic progress so that I know
+what to practise next.
+
+- T-US6-1: Given saved attempts, when S8 opens, then each topic shows
+  total attempts, correct attempts, accuracy and status according to
+  BR6–BR7.
+
+- T-US6-2 (unhappy): Given no attempts, when S8 opens, then show “Your
+  progress will appear after you answer practice questions.” and “Browse
+  topics”.
+
+**US7 — F6.** As a caregiver, I want to view learner progress and a home
+activity so that I can support practice.
+
+- T-US7-1: Given an active link, when S9 opens, then show topic statuses
+  and published home activities.
+
+- T-US7-2 (unhappy): Given the caregiver is unlinked, when S9 is
+  requested, then show “You no longer have access to this learner.” and
+  return to S3.
+
+**US8 — F7.** As a learner, I want to flag unclear content so that the
+content reviewer can check it.
+
+- T-US8-1: Given a selected category, when feedback is submitted, then
+  show “Thanks. Your feedback has been recorded.” and create one report.
+
+- T-US8-2 (unhappy): Given the note exceeds 300 characters, when
+  submitted, then show “Keep your note to 300 characters or fewer.” and
+  create no report.
+
+## 6.2 Edge cases
+
+| **Situation**                           | **Exact text shown**                                                  | **App behaviour**                                                                   |
+|-----------------------------------------|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| Internet drops while opening lesson     | “You’re offline. Reconnect to load this lesson.”                      | Do not create partial lesson or attempt records.                                    |
+| User taps Check answer repeatedly       | “Your answer has already been recorded.”                              | Accept only first submission for current question; disable button after submission. |
+| Topic archived while old page is open   | “This lesson is no longer available.”                                 | Remove from lists and route to S5.                                                  |
+| Caregiver unlinks learner while S9 open | “You no longer have access to this learner.”                          | Recheck permission per request and clear learner data from view.                    |
+| Published lesson has no questions       | “Practice questions are not available for this lesson yet.”           | Return option to S6; do not show broken question.                                   |
+| Feedback request fails                  | “Feedback wasn’t sent. Try again.”                                    | Preserve category and note.                                                         |
+| Pairing code expired/used               | “This code has expired or has already been used. Ask for a new code.” | Do not create a link.                                                               |
+
+# 7. User flows and navigation map
+
+## 7.1 Flows
+
+**Flow A — caregiver access (F1).** Starts on S1. Select “Create
+caregiver account” → S2. If verification is complete, proceed to S3;
+otherwise display verification notice and wait. If a learner is linked,
+select “Start learning” → S4. If no learner is linked, use “Add learner”
+from S3/S10 and follow the pairing-code instructions. Incorrect
+credentials keep the user on the sign-in state with the exact error.
+Ends when the learner’s grade/topic flow is available.
+
+**Flow B — choose topic (F2).** S4 → choose Grade 4, 5, 6 or 7 → S5. If
+published topics exist, select “Open lesson” → S6; otherwise show the
+empty state on S5. Ends at the selected lesson.
+
+**Flow C — learn and practise (F3/F4/F5).** S6 → “Start practice” → S7.
+Select option and press “Check answer”. If no option is selected, remain
+on S7 with validation message. Otherwise record one attempt and show
+feedback. “Next question” continues; after the final question choose
+“View progress” → S8. If content fails, show Retry/back and do not
+record an attempt. Ends at topic summary.
+
+**Flow D — caregiver support (F6).** S3 → choose linked learner → S9. If
+link is active, show summary and home activities. Otherwise show access
+error and return S3. Ends when caregiver can discuss one suggested
+activity with learner.
+
+## 7.2 Navigation map
+
+flowchart TD  
+S1\["S1 Welcome"\] --\>\|Create caregiver account\| S2\["S2 Sign Up"\]  
+S1 --\>\|Log in\| S11\["S11 Log In"\]  
+S2 --\>\|Account created / verified\| S3\["S3 Caregiver Home"\]  
+S11 --\>\|Successful sign-in\| S3  
+S11 --\>\|Forgot password?\| S12\["S12 Forgot Password"\]  
+S12 --\>\|Back to log in\| S11  
+S11 --\>\|Create caregiver account\| S2  
+S3 --\>\|Start learning\| S4\["S4 Grade and Topic Selection"\]  
+S3 --\>\|View progress\| S9\["S9 Caregiver Progress"\]  
+S3 --\>\|Settings\| S10\["S10 Profile and Settings"\]  
+S4 --\>\|Choose grade\| S5\["S5 Topic List"\]  
+S5 --\>\|Open lesson\| S6\["S6 Lesson"\]  
+S6 --\>\|Start practice\| S7\["S7 Practice"\]  
+S6 --\>\|Report unclear lesson\| M2\["M2 Lesson Feedback"\]  
+M2 --\>\|Submit or Cancel\| S6  
+S7 --\>\|View progress\| S8\["S8 Progress Summary"\]  
+S8 --\>\|Browse topics\| S4  
+S9 --\>\|Back to home\| S3  
+S10 --\>\|Log out\| M1\["M1 Confirm Log Out"\]  
+M1 --\>\|Confirm\| S1  
+M1 --\>\|Cancel\| S10
+
+# 8. Screens
+
+## 8.1 Screen inventory
+
+| **ID** | **Screen**                | **Type**    | **Who can open**                        | **Purpose**                                             | **Tab bar** | **Stories** |
+|--------|---------------------------|-------------|-----------------------------------------|---------------------------------------------------------|-------------|-------------|
+| S1     | Welcome                   | Full screen | Logged out                              | Introduce app and route to sign-up/log-in               | No          | US1, US2    |
+| S2     | Sign Up                   | Full screen | Logged out                              | Create caregiver account                                | No          | US1         |
+| S3     | Log In                    | Full screen | Logged out                              | Authenticate caregiver and provide password reset route | No          | US2         |
+| S4     | Caregiver Home            | Full screen | Caregiver                               | Show learners and entry points                          | No          | US2, US7    |
+| S4     | Grade and Topic Selection | Full screen | Caregiver session with selected learner | Choose grade                                            | No          | US3         |
+| S5     | Topic List                | Full screen | Caregiver session with selected learner | List published grade topics                             | No          | US3         |
+| S6     | Lesson                    | Full screen | Caregiver session with selected learner | Show bilingual lesson                                   | No          | US4, US8    |
+| S7     | Practice                  | Full screen | Caregiver session with selected learner | Ask multiple-choice question                            | No          | US5         |
+| S8     | Progress Summary          | Full screen | Caregiver session with selected learner | Show topic-level progress                               | No          | US6         |
+| S9     | Caregiver Progress        | Full screen | Caregiver                               | Show linked learner summary/home activities             | No          | US7         |
+| S10    | Profile and Settings      | Full screen | Caregiver                               | Manage account, links, privacy and sign-out             | No          | US1, US2    |
+| M1     | Confirm Log Out           | Modal       | Caregiver                               | Confirm sign-out                                        | No          | US2         |
+| M2     | Lesson Feedback           | Modal       | Learner context                         | Report unclear content                                  | No          | US8         |
+| S11    | Log In                    | Full screen | Logged out                              | Authenticate caregiver and route to password reset      | No          | US2         |
+| S12    | Forgot Password           | Full screen | Logged out                              | Request password reset email                            | No          | US2         |
+
+## 8.2 Screen specifications
+
+**S1 Welcome**
+
+Purpose: introduce MathsBridge. Who: logged out. Route: launch → S1 →
+S2/S3. Layout: wordmark and bridge/book icon; heading “Understand
+Mathematics, one topic at a time.”; body “Sepedi explanations, English
+Mathematics terms, worked examples and practice.”; primary “Create
+caregiver account” → S2; secondary “Log in” → S11. States: normal shows
+both buttons; loading not needed; error “MathsBridge couldn’t start.
+Refresh the page.”; offline banner “You’re offline. Sign in requires an
+internet connection.”; success routes to selected screen. Sample labels:
+Grades 4–7, Mathematics, Sepedi + English.
+
+**S2 Sign Up**
+
+Purpose: create caregiver account. Route S1 → S2 → S3 after
+verification. Fields: Full name (required, max 80; error “Enter your
+full name.”); Email address (required email; “Enter a valid email
+address.”); Password (required, min 10; “Use at least 10 characters.”);
+Confirm password (must match; “Passwords do not match.”); required
+checkbox “I am 18 or older and I am the parent or legal guardian
+responsible for this learner.”; unticked consent checkbox “I agree to
+the Privacy Notice and consent to the processing of my and the learner’s
+information for learning progress.” Primary “Create account”; link
+“Already have an account? Log in” → S3. Errors: “Confirm that you are an
+adult parent or guardian to continue.” and “Please agree to the Privacy
+Notice to continue.” Normal: blank form with labels. Loading: button
+“Creating account…” disabled. Server error: “We couldn’t create your
+account. Check your details or try signing in.” Offline: “You’re
+offline. Reconnect to create your account.” Success: “Check your email
+to verify your account.” Sample fictional data: Lerato Mokoena;
+caregiver.demo@example.test.
+
+**S3 Caregiver Home**
+
+Purpose: show linked learners. Route S2/login → S3 → S4/S9/S10. Layout:
+header “MathsBridge” and caregiver first name; “Your learners” cards
+showing display name, grade, last topic or “Not started”, “Start
+learning”; “Add learner”; “View progress” → S9; “Settings” → S10. Empty:
+“No learner added yet. Add a learner to start.” with “Add learner”.
+Loading: 2 card placeholders. Error: “We couldn’t load your learners.
+Try again.” Offline: “You’re offline. Learner data may be out of date.”
+Success: new learner card appears. Sample fictional learners: Lerato M.
+Grade 5 Fractions; Thabo K. Grade 7 Decimals; Naledi P. Grade 4
+Multiplication.
+
+**S4 Grade and Topic Selection**
+
+Purpose: choose grade. Route S3 → S4 → S5. Layout: back button; selected
+learner; title “Choose a grade”; cards Grade 4, Grade 5, Grade 6, Grade
+7, each labelled Mathematics and button “View topics”. Empty state not
+needed because grades are fixed. Error: “We couldn’t load topics. Try
+again.” Offline: “You’re offline. Connect to load topic lists.” Success:
+selected grade appears on S5.
+
+**S5 Topic List**
+
+Purpose: list published topics. Route S4 → S5 → S6. Layout: back button;
+dynamic title such as “Grade 5 Mathematics”; topic cards with title,
+description, status and “Open lesson”; “Choose another grade” → S4.
+Empty: “No lessons are available for this grade yet.” Loading: 3 card
+placeholders. Error: “We couldn’t load topics. Try again.” Offline:
+“You’re offline. Reconnect to load topics.” Samples: Fractions;
+Multiplication and division; Decimals.
+
+**S6 Lesson**
+
+Purpose: show Sepedi explanation with English terms. Route S5 → S6 → S7;
+feedback → M2. Layout: back button and topic title; “Lesson 1 of 1”;
+section “Tlhaloso ka Sepedi”; section “English Mathematics terms” with
+term/meaning rows; “Worked example” with numbered steps and simple
+diagram; “Report an unclear lesson” → M2; primary “Start practice” → S7.
+Empty: “Lesson content is being prepared.” Loading: text/diagram
+placeholders. Error: “This lesson couldn’t load. Check your connection
+and try again.” Retry. Offline: same message. Samples: Fractions,
+Multiplication and division, Decimals. Sepedi content must be reviewed
+before publication.
+
+**S7 Practice**
+
+Purpose: one question at a time. Route S6 → S7 → next question/S8.
+Layout: topic title and “Question 1 of 3”; question text and optional
+diagram; 2–4 radio-style options; “Check answer”; after submit show
+feedback/explanation; “Next question”; final question offers “View
+progress” → S8. Empty: “Practice questions are not available for this
+lesson yet.” Loading: question placeholder. Error: “Your answer wasn’t
+saved. Check your connection and try again.” Offline: “You’re offline.
+Reconnect before submitting your answer.” No selection: “Choose an
+answer before continuing.” Success feedback per BR5. Sample question
+examples: 1/2 vs 1/3; compare 0.4, 0.04 and 0.44; 4 groups of 3.
+
+**S8 Progress Summary**
+
+Purpose: show topic progress. Route S7 → S8; “Browse topics” → S4.
+Layout: “Your progress”; cards for topics studied, attempts, overall
+accuracy if attempts exist; topic rows show title, attempts, correct
+attempts, accuracy, status and next action. Empty: “Your progress will
+appear after you answer practice questions.” Loading: summary and 3
+topic placeholders. Error: “We couldn’t load your progress. Try again.”
+Offline: “You’re offline. Progress may not include your latest answers.”
+Sample fictional records: Fractions — 6 attempts, 5 correct, 83%, Doing
+well; Decimals — 5 attempts, 3 correct, 60%, Practise again;
+Multiplication — 2 attempts, 1 correct, 50%, Practising.
+
+**S9 Caregiver Progress**
+
+Purpose: caregiver views progress and home activities. Route S3 → S9 →
+S3. Layout: title “Learning progress” and learner name; topic rows with
+attempts/accuracy/status; home activity card with title, materials and
+2–3 steps; “Back to home”. Empty: “There is no progress to show yet.
+Encourage your learner to complete one practice set.” Loading: 3 row
+placeholders. Error: “We couldn’t load this learner’s progress. Try
+again.” Offline: “You’re offline. Reconnect to view the latest
+progress.” Sample activities: divide an orange into equal parts; compare
+prices in a shop flyer; use bottle tops to make equal groups.
+
+**S10 Profile and Settings**
+
+Purpose: manage account, learner links, privacy, log-out and deletion.
+Route S3 → S10; log out → M1 → S1. Layout: account name/email and
+“Change email”; linked learner list and “Unlink learner” with
+confirmation; “Read Privacy Notice”; “Consent and child data”; danger
+action “Delete caregiver account”; “Log out”. Empty: “No learner linked
+to this account.” Loading: placeholders. Error: “Settings couldn’t load.
+Try again.” Offline: “You’re offline. Account changes require an
+internet connection.” Success: “Your changes have been saved.” Sample:
+caregiver.demo@example.test; Lerato M.; consent recorded 28 Oct 2026.
+
+**M1 Confirm Log Out**
+
+Purpose: confirm sign-out. Route S10 → M1 → S1 or S10. Dialog title “Log
+out?”; body “You’ll need to sign in again to manage this learner.”;
+secondary “Cancel” → S10; danger “Log out” clears local session and
+returns S1. Error: “Couldn’t log out. Try again.” Offline: clear local
+session; server revocation may wait until connection returns.
+
+**M2 Lesson Feedback**
+
+Purpose: flag unclear lesson. Route S6 → M2 → S6. Dialog title “Report
+an unclear lesson”; required categories “Sepedi wording”, “Mathematics
+explanation”, “Other issue”; optional note max 300 characters; “Cancel”;
+“Send feedback”. Error for long note: “Keep your note to 300 characters
+or fewer.” Server error: “Feedback wasn’t sent. Try again.” Offline:
+“You’re offline. Reconnect to send feedback.” Success: “Thanks. Your
+feedback has been recorded.” Sample note: “Please explain this term in
+simpler words.”
+
+**S11 Log In**
+
+Purpose: authenticate a verified caregiver. Route S1 → S11 → S3; “Forgot
+password?” → S12; “Create account” → S2. Layout: title “Log in”; Email
+field; Password field with show/hide toggle; primary “Log in”; link
+“Forgot password?”; link “Create caregiver account”. Errors: “Email or
+password is incorrect.”; after 5 consecutive failures show “Too many
+sign-in attempts. Wait 15 minutes and try again.” Loading: button
+“Signing in…” disabled. Offline: “You’re offline. Reconnect to log in.”
+Success: route to S3. Sample email: caregiver.demo@example.test.
+
+**S12 Forgot Password**
+
+Purpose: request reset email. Route S11 → S12 → S11. Layout: title
+“Reset your password”; body “Enter the email address for your caregiver
+account. We’ll send a reset link if an account can be found.”; Email
+field; primary “Send reset link”; secondary “Back to log in” → S11.
+Error: “Enter a valid email address.”; server error “We couldn’t send
+the reset email. Try again.” Success: “If an account matches that email,
+a reset link will be sent.” Do not reveal whether the email is
+registered. Reset link expires after 60 minutes (Section 5). Offline:
+“You’re offline. Reconnect to request a reset link.”
+
+## 8.3 Shared components
+
+| **Component**       | **Used on**                  | **Contents**                                       | **Behaviour**                                                     |
+|---------------------|------------------------------|----------------------------------------------------|-------------------------------------------------------------------|
+| Header              | S1–S12                       | Title, back button, optional learner name          | Consistent height; accessible back label                          |
+| Primary button      | S1–S12, M1–M2                | Main action                                        | Minimum 48px high; disabled during submission; visible focus      |
+| Secondary button    | All relevant screens         | Alternate action                                   | Outlined style; minimum 48px                                      |
+| Danger button       | S10, M1                      | Sign-out/delete action                             | Red style; confirmation for destructive action                    |
+| Text field          | S2, S10, M2                  | Label, input, helper/error                         | Normal/focus/error states; retain non-sensitive input after error |
+| Topic card          | S5, S8, S9                   | Title, description/status, action                  | Explicit action button, keyboard focus                            |
+| Toast               | S2–S10, M1–M2                | Short confirmation/error                           | 3 seconds; important errors also inline                           |
+| Confirmation modal  | M1 and unlink/delete actions | Title, explanation, Cancel/confirm                 | Destructive action only after confirm                             |
+| Empty-state block   | S3, S5, S8, S9               | Message and next action                            | Never show blank screen                                           |
+| Loading placeholder | S3, S5–S9                    | Grey layout placeholders                           | Show if remote request exceeds 200ms                              |
+| Offline banner      | S1–S12                       | “You’re offline. Some content may be unavailable.” | Visible while connection is unavailable                           |
+
+## 8.4 Sample data set
+
+| **Entity**        | **Record 1**                                | **Record 2**                            | **Record 3**                                 |
+|-------------------|---------------------------------------------|-----------------------------------------|----------------------------------------------|
+| Learner           | Lerato M. — Grade 5                         | Thabo K. — Grade 7                      | Naledi P. — Grade 4                          |
+| Topic             | Grade 5: Fractions                          | Grade 7: Decimals                       | Grade 4: Multiplication                      |
+| Lesson            | Equal parts; English term “numerator”       | Decimal places: tenths/hundredths       | Groups of equal size                         |
+| Practice question | Shaded fraction: 1/2, 1/3, 2/3; correct 1/2 | Greatest: 0.4, 0.04, 0.44; correct 0.44 | 4 groups of 3; options 7, 12, 14; correct 12 |
+| Home activity     | Orange cut into 4 equal parts               | Compare prices with cents in a flyer    | 4 groups of 3 bottle tops                    |
+
+# 9. Design direction
+
+## 9.1 Look and brand
+
+| **Item**                  | **Choice**                                                                                                                         |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| Look and feel             | Encouraging, clear, focused                                                                                                        |
+| Primary                   | Deep blue \`#2457A7\`                                                                                                              |
+| Secondary/accent          | Teal \`#0F766E\`                                                                                                                   |
+| Background                | \`#F7F9FC\`                                                                                                                        |
+| Main text                 | \`#172033\`                                                                                                                        |
+| Error / success / warning | \`#B42318\` / \`#18794E\` / \`#8A4B00\`                                                                                            |
+| Dark mode                 | No in v1                                                                                                                           |
+| Font                      | Inter with system sans-serif fallback                                                                                              |
+| Text sizes                | Page title 28px/700; section 20px/700; card heading 18px/600; body 16px/400; small 12px/400; buttons 16px/600                      |
+| Spacing unit              | 4px; use 4, 8, 12, 16, 24, 32px                                                                                                    |
+| Side margin               | 16px mobile; 24px tablet; 32px desktop                                                                                             |
+| Radius                    | Cards 12px; inputs 8px; buttons 10px; pills fully rounded                                                                          |
+| Shadows                   | Soft shadow on elevated cards only                                                                                                 |
+| Button height             | Minimum 48px                                                                                                                       |
+| Icons                     | Lucide outline, with accessible labels                                                                                             |
+| Logo                      | “MathsBridge” wordmark and blue bridge arc joining two book pages                                                                  |
+| Images                    | Simple vector maths diagrams; no stock photos of children; initials rather than learner photos                                     |
+| Reference apps            | Khan Academy for structured topic learning; Siyavula for Mathematics practice. Borrow hierarchy and worked examples, not branding. |
+
+## 9.2 Tone of voice
+
+Encouraging, respectful and plain. Example: “Not quite. Let’s look at
+the example, then try another question.” Sepedi content must be reviewed
+by a fluent Sepedi speaker before publication.
+
+## 9.3 Platform rules
+
+Responsive web app, designed first at 390px and tested at 360px. Under
+640px: single column. At 640–1024px: centred content max 760px. Over
+1024px: centred content max 960px with a narrow reading column. Use top
+header, not side menu. Every clickable element has hover and
+keyboard-focus states. No separate mobile app in v1.
+
+## 9.4 Accessibility
+
+Body text ≥16px, small text ≥12px; text contrast ≥4.5:1; tap targets
+≥44×44px; never use colour alone for correctness/status; screen-reader
+labels for icons and diagrams; keyboard-operable flows; visible labels
+and errors. **Pending:** verify actual contrast for all chosen colour
+pairs before approval.
+
+# 10. Data model
+
+## 10.1 Entities and fields
+
+| **Entity / field**                 | **Type**                                                     | **Required / default** | **Unique** | **Rules**                             | **Delete behaviour**                   |
+|------------------------------------|--------------------------------------------------------------|------------------------|------------|---------------------------------------|----------------------------------------|
+| Caregiver.id                       | ID                                                           | Yes / auto             | Yes        | Primary key                           | —                                      |
+| Caregiver.full_name                | Text max 80                                                  | Yes                    | No         | Trim whitespace                       | —                                      |
+| Caregiver.email                    | Email                                                        | Yes / Auth provider    | Yes        | Verified by Supabase Auth             | Delete through account workflow        |
+| Caregiver.created_at               | Date-time                                                    | Yes / now              | No         | Saved UTC, shown SAST                 | —                                      |
+| Learner.id                         | ID                                                           | Yes / auto             | Yes        | Primary key                           | Follow retention rule                  |
+| Learner.display_name               | Text max 60                                                  | Yes                    | No         | Avoid unnecessary personal data       | —                                      |
+| Learner.grade                      | Choice: 4, 5, 6, 7                                           | Yes                    | No         | One grade only                        | —                                      |
+| Learner.status                     | Choice: Active, Archived                                     | Yes / Active           | No         | Only Active learners study            | —                                      |
+| Learner.created_at                 | Date-time                                                    | Yes / now              | No         | Saved UTC, shown SAST                 | —                                      |
+| CaregiverLearner.id                | ID                                                           | Yes / auto             | Yes        | Primary key                           | —                                      |
+| CaregiverLearner.caregiver_id      | Link to Caregiver                                            | Yes                    | No         | Existing caregiver                    | —                                      |
+| CaregiverLearner.learner_id        | Link to Learner                                              | Yes                    | No         | Existing learner                      | —                                      |
+| CaregiverLearner.pairing_code_hash | Text max 128                                                 | No                     | No         | Hash only; never store raw code       | —                                      |
+| CaregiverLearner.code_expires_at   | Date-time                                                    | No                     | No         | Expires after 24 hours                | —                                      |
+| CaregiverLearner.status            | Choice: Active, Unlinked, Expired                            | Yes / Active           | No         | Only Active grants access             | —                                      |
+| CaregiverLearner.created_at        | Date-time                                                    | Yes / now              | No         | Saved UTC, shown SAST                 | —                                      |
+| Topic.id                           | ID                                                           | Yes / auto             | Yes        | Primary key                           | Archive if referenced                  |
+| Topic.grade                        | Choice: 4, 5, 6, 7                                           | Yes                    | No         | One grade                             | —                                      |
+| Topic.title                        | Text max 100                                                 | Yes                    | No         | Published title                       | —                                      |
+| Topic.description                  | Text max 240                                                 | Yes                    | No         | One-sentence summary                  | —                                      |
+| Topic.topic_order                  | Whole number                                                 | Yes / 1                | No         | Positive; unique within grade (BR2)   | —                                      |
+| Topic.status                       | Choice: Draft, Published, Archived                           | Yes / Draft            | No         | Published only visible (BR1)          | —                                      |
+| Lesson.id                          | ID                                                           | Yes / auto             | Yes        | Primary key                           | Archive if referenced                  |
+| Lesson.topic_id                    | Link to Topic                                                | Yes                    | No         | Existing topic                        | —                                      |
+| Lesson.sepedi_explanation          | Long text max 5000                                           | Yes                    | No         | Reviewed before publishing (BR3)      | —                                      |
+| Lesson.english_terms               | Long text max 2000                                           | Yes                    | No         | At least one term/meaning (BR3)       | —                                      |
+| Lesson.worked_example              | Long text max 3000                                           | Yes                    | No         | Reviewed numbered steps (BR3)         | —                                      |
+| Lesson.reviewer_note               | Text max 500                                                 | Yes                    | No         | Reviewer/source note                  | —                                      |
+| Lesson.status                      | Choice: Draft, Published, Archived                           | Yes / Draft            | No         | Only Published visible                | —                                      |
+| Lesson.created_at                  | Date-time                                                    | Yes / now              | No         | Saved UTC, shown SAST                 | —                                      |
+| PracticeQuestion.id                | ID                                                           | Yes / auto             | Yes        | Primary key                           | Archive if referenced                  |
+| PracticeQuestion.lesson_id         | Link to Lesson                                               | Yes                    | No         | Existing lesson                       | —                                      |
+| PracticeQuestion.question_text     | Long text max 1000                                           | Yes                    | No         | Plain text                            | —                                      |
+| PracticeQuestion.options           | Long text max 1000                                           | Yes                    | No         | 2–4 options                           | —                                      |
+| PracticeQuestion.correct_option    | Text max 100                                                 | Yes                    | No         | Exactly matches one option (BR4)      | —                                      |
+| PracticeQuestion.explanation       | Long text max 1500                                           | Yes                    | No         | Shown after answer                    | —                                      |
+| PracticeQuestion.status            | Choice: Draft, Published, Archived                           | Yes / Draft            | No         | Published only available              | —                                      |
+| Attempt.id                         | ID                                                           | Yes / auto             | Yes        | Primary key                           | Delete with learner per retention rule |
+| Attempt.learner_id                 | Link to Learner                                              | Yes                    | No         | Existing learner                      | —                                      |
+| Attempt.question_id                | Link to PracticeQuestion                                     | Yes                    | No         | Existing question                     | —                                      |
+| Attempt.selected_option            | Text max 100                                                 | Yes                    | No         | Must match option                     | —                                      |
+| Attempt.is_correct                 | Yes/No                                                       | Yes / calculated       | No         | Calculated by trusted server/database | —                                      |
+| Attempt.submitted_at               | Date-time                                                    | Yes / now              | No         | Saved UTC, shown SAST                 | —                                      |
+| HomeActivity.id                    | ID                                                           | Yes / auto             | Yes        | Primary key                           | Archive if referenced                  |
+| HomeActivity.topic_id              | Link to Topic                                                | Yes                    | No         | One activity per topic in v1          | —                                      |
+| HomeActivity.title                 | Text max 100                                                 | Yes                    | No         | Short title                           | —                                      |
+| HomeActivity.materials             | Text max 250                                                 | Yes                    | No         | Common household materials            | —                                      |
+| HomeActivity.steps                 | Long text max 1000                                           | Yes                    | No         | 2–3 steps                             | —                                      |
+| HomeActivity.status                | Choice: Draft, Published, Archived                           | Yes / Draft            | No         | Published shown to caregivers         | —                                      |
+| LessonFeedback.id                  | ID                                                           | Yes / auto             | Yes        | Primary key                           | Delete with learner per retention rule |
+| LessonFeedback.learner_id          | Link to Learner                                              | Yes                    | No         | Existing learner                      | —                                      |
+| LessonFeedback.lesson_id           | Link to Lesson                                               | Yes                    | No         | Existing lesson                       | —                                      |
+| LessonFeedback.category            | Choice: Sepedi wording, Mathematics explanation, Other issue | Yes                    | No         | One allowed category (BR10)           | —                                      |
+| LessonFeedback.note                | Long text max 300                                            | No                     | No         | Maximum 300 characters                | —                                      |
+| LessonFeedback.created_at          | Date-time                                                    | Yes / now              | No         | Saved UTC, shown SAST                 | —                                      |
+
+## 10.2 Relationships
+
+One Caregiver can have many CaregiverLearner links; one Learner can have
+multiple caregiver links only when explicitly created. One Learner has
+many Attempts and LessonFeedback records. One Topic has one or more
+Lessons and at most one HomeActivity in v1. One Lesson has many
+PracticeQuestions and LessonFeedback records. One PracticeQuestion has
+many Attempts. CaregiverLearner is the linking entity used to enforce
+caregiver access.
+
+## 10.3 Status values and changes
+
+| **Entity.field**        | **From**  | **To**    | **Cause**                                                   |
+|-------------------------|-----------|-----------|-------------------------------------------------------------|
+| Learner.status          | Active    | Archived  | Caregiver action or project-owner maintenance               |
+| CaregiverLearner.status | Active    | Unlinked  | Caregiver confirms unlink; access removed immediately (BR8) |
+| CaregiverLearner.status | Active    | Expired   | Pairing code expires after 24 hours unused (BR8)            |
+| Topic.status            | Draft     | Published | Content administrator after BR1–BR3 checks                  |
+| Topic.status            | Published | Archived  | Content administrator; no longer listed                     |
+| Lesson.status           | Draft     | Published | Content administrator after review (BR3)                    |
+| Lesson.status           | Published | Archived  | Content administrator                                       |
+| PracticeQuestion.status | Draft     | Published | Content administrator after BR4 checks                      |
+| HomeActivity.status     | Draft     | Published | Content administrator after review                          |
+| LessonFeedback          | Created   | Reviewed  | Project owner marks reviewed in dashboard                   |
+
+## 10.4 Reference and seed data
+
+Reference data: Grades 4–7 and topic order are stored in Topic records.
+The project owner maintains topics, lessons, terms/translations,
+questions and activities in Supabase dashboard. All content must be
+reviewed before publication. Seed data: fictional records from Section
+8.4; provide at least 2 topics per grade and 3 questions per topic
+before full MVP demo. Development test account:
+caregiver.demo@example.test; password is generated locally for the
+development project only and is never committed to GitHub. Learner
+profiles are created through this caregiver test account. Do not put
+real passwords in the PRD.
+
+# 11. Tech stack and architecture
+
+## 11.1 Stack
+
+| **Layer**                | **Choice**                                                                                | **Why**                                                                |
+|--------------------------|-------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| Frontend                 | React 19 + Vite 7; confirm supported versions during setup                                | Responsive web UI and familiar JavaScript workflow                     |
+| Styling                  | Tailwind CSS 4; confirm setup compatibility                                               | Consistent design tokens and responsive layouts                        |
+| Backend/API              | Supabase JS v2 + PostgreSQL functions/policies                                            | Auth, database and access control without a separate Express API in v1 |
+| Database                 | Supabase PostgreSQL                                                                       | Relational data and row-level security                                 |
+| Authentication           | Supabase Auth                                                                             | Verification, reset and sessions                                       |
+| File storage             | None in v1                                                                                | Text/SVG diagrams only; no child images or classroom recordings        |
+| Scheduled jobs           | None                                                                                      | Pairing-code expiry checked on use                                     |
+| Hosting                  | Vercel or local Vite preview; final host to be confirmed                                  | Shareable browser demo                                                 |
+| Language/package manager | TypeScript 5.x, npm 11.x, Node.js 24.x; pin actual installed versions                     | Typed front end and familiar tools                                     |
+| Testing                  | Vitest + React Testing Library plus manual acceptance checklist                           | Automated business-rule tests and observed usability tests             |
+| Version control          | GitHub repository to be created/confirmed; save as \`docs/PRD.md\`, \`MASTER.md\` at root | Track revisions and phased build                                       |
+
+## 11.2 Third-party services
+
+| **Service** | **Purpose**                 | **Free tier enough?**                                         | **Key?**                                                                                      |
+|-------------|-----------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Supabase    | Authentication and database | Likely sufficient for development/demo; verify current limits | Project URL and anon key are public only with RLS; service-role key is secret and server-only |
+
+## 11.3 How parts connect
+
+The React web app calls Supabase Auth for caregiver sign-in and the
+database for topics, lessons, questions, attempts and progress.
+PostgreSQL policies check the authenticated caregiver and active
+caregiver–learner link before returning learner-specific records. Answer
+correctness and progress calculations must be verified by trusted
+database logic, not accepted from client values. The browser receives
+only records the signed-in user is permitted to read.
+
+## 11.4 Permissions
+
+| **Entity**       | **Action**         | **Allowed**                              | **Extra rule**                                          |
+|------------------|--------------------|------------------------------------------|---------------------------------------------------------|
+| Caregiver        | Read/update        | Owner only                               | Cannot change auth ID                                   |
+| Learner          | Read               | Active linked caregiver                  | No public access                                        |
+| Learner          | Create/update      | Authenticated caregiver with active link | Only permitted profile fields                           |
+| Learner          | Delete             | Trusted deletion workflow                | Apply retention rule                                    |
+| CaregiverLearner | Read               | Linked caregiver                         | Own links only                                          |
+| CaregiverLearner | Create             | Authenticated caregiver                  | Code valid, unused, unexpired                           |
+| CaregiverLearner | Update             | Linked caregiver                         | Only unlink action                                      |
+| Topic            | Read               | Authenticated users                      | Published only                                          |
+| Topic            | Write/delete       | Project owner dashboard                  | No client writes                                        |
+| Lesson           | Read               | Authenticated users                      | Published only                                          |
+| Lesson           | Write/delete       | Project owner dashboard                  | No client writes                                        |
+| PracticeQuestion | Read               | Authenticated users                      | Published questions for published lessons               |
+| PracticeQuestion | Write/delete       | Project owner dashboard                  | No client writes                                        |
+| Attempt          | Read               | Active linked caregiver/learner session  | Only linked learner’s records                           |
+| Attempt          | Create             | Trusted database function                | Validate question and calculate correctness server-side |
+| Attempt          | Update/delete      | No app user                              | Immutable after submission                              |
+| HomeActivity     | Read               | Authenticated caregiver                  | Published only                                          |
+| HomeActivity     | Write/delete       | Project owner dashboard                  | No client writes                                        |
+| LessonFeedback   | Create             | Active learner context                   | Fixed category, note ≤300 chars                         |
+| LessonFeedback   | Read/update/delete | Project owner dashboard                  | Not browsable by learner/caregiver                      |
+
+## 11.5 Environment variables and secrets
+
+| **Name**                      | **Purpose**                                            | **Where to get it**       | **Classification**                         |
+|-------------------------------|--------------------------------------------------------|---------------------------|--------------------------------------------|
+| \`VITE_SUPABASE_URL\`         | Supabase project URL                                   | Supabase project settings | Public                                     |
+| \`VITE_SUPABASE_ANON_KEY\`    | Browser client key                                     | Supabase project settings | Public only with correct RLS               |
+| \`SUPABASE_SERVICE_ROLE_KEY\` | Privileged trusted scripts only; not needed in browser | Supabase settings         | Secret; never expose in frontend or GitHub |
+
+Keep real values in ignored .env; commit .env.example with placeholders
+only.
+
+## 11.6 Folder structure
+
+mathsbridge/  
+docs/PRD.md  
+MASTER.md  
+src/  
+app/ \# router and app shell  
+components/ \# shared UI  
+pages/ \# S1–S12 screens  
+features/auth/ \# caregiver sign-up, log-in, reset  
+features/learning/ \# topics, lessons, practice  
+features/progress/ \# status calculation and summaries  
+features/caregiver/ \# learner links and caregiver view  
+lib/supabase.ts  
+types/  
+styles/  
+supabase/  
+migrations/ \# schema, RLS, answer submission function  
+seed.sql  
+tests/ \# business rules and UI flows  
+.env.example  
+.gitignore  
+package.json  
+package-lock.json
+
+## 11.7 Testing plan
+
+Test every T-US criterion manually using a caregiver demo account.
+Automate BR4 answer validation; BR6 status calculations for 0 attempts,
+1–4 attempts, 5+ attempts, 79%, 80% and 100%; BR8 pairing-code
+expiry/use and unlink permissions; BR1 published-only content; and
+learner data isolation. Use a development Supabase project and fictional
+profiles. Five-minute demo: sign in; select Lerato; choose Grade
+5/Fractions; read Sepedi explanation and English term; answer three
+questions including one wrong answer; open progress and check status;
+show caregiver home activity; flag unclear lesson; verify an unlinked
+caregiver cannot view learner progress.
+
+# 12. Quality, errors, security and privacy
+
+## 12.1 Quality requirements
+
+| **Area**        | **Checkable requirement**                                                                                                                                                                 |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Speed           | On stable 10 Mbps connection, main screen heading and content/loading placeholder appear within 3 seconds in 9 of 10 trials on a mid-range Android phone or desktop browser.              |
+| Data usage      | No autoplay video. No video/audio uploads. Lesson text payload under 30 KB excluding fonts/app assets. Load one lesson and one question at a time.                                        |
+| Offline         | Sign-in, lesson loading, attempt submission and caregiver progress require internet. Show “You’re offline. Reconnect to load the latest learning content.” No offline mode claimed in v1. |
+| Devices         | Latest stable Chrome and Edge; Safari where available; widths 360–1440px.                                                                                                                 |
+| Language/region | Interface English (South Africa), reviewed Sepedi lesson content; dates 28 Oct 2026; 24-hour time; SAST UTC+2; no money or phone fields in v1.                                            |
+| Accessibility   | Section 9.4 requirements; keyboard-test all primary flows.                                                                                                                                |
+| Scale           | Planning target 50 caregiver accounts and 100 learner profiles in first project semester; not a load-tested guarantee.                                                                    |
+| Abuse limits    | Maximum 20 answer submissions per learner per 10 minutes; maximum 5 feedback reports per learner per day, enforced server-side.                                                           |
+
+## 12.2 Error messages used everywhere
+
+| **Situation**        | **Exact message**                                                | **Next action**                                        |
+|----------------------|------------------------------------------------------------------|--------------------------------------------------------|
+| No internet          | “You’re offline. Reconnect to load the latest learning content.” | Disable server requests; preserve unsent fields        |
+| Server/unknown error | “Something went wrong. Try again.”                               | Show Retry where safe; hide raw error codes            |
+| Session expired      | “Your session has expired. Please log in again.”                 | Route to login; clear private learner data from memory |
+| Not allowed          | “You don’t have permission to view this information.”            | Do not return record; route to S3                      |
+| Form field error     | Red border and field-specific text                               | Keep non-sensitive values and focus first error        |
+
+## 12.3 Security
+
+Passwords are handled only by Supabase Auth. Secret keys are never
+included in browser code, repository or screenshots. Enable RLS on every
+table containing caregiver, learner, attempt, link or feedback data.
+Correctness and progress metrics are verified by trusted database logic.
+Validate inputs server-side and do not rely on hidden buttons for access
+control. Do not collect precise location, learner photos, audio
+recordings or classroom recordings in v1.
+
+## 12.4 Privacy and POPIA
+
+| **Personal information**   | **Why**                                   | **Who can see**                                | **Storage**                                   | **Retention**                                                                                    | **Deletion**                                                        |
+|----------------------------|-------------------------------------------|------------------------------------------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| Caregiver name/email       | Account and recovery                      | Caregiver; project owner for support           | Supabase Auth/profile; region to be confirmed | While active; delete within 30 days after confirmed deletion unless law requires otherwise       | S10 account deletion                                                |
+| Learner display name/grade | Identify profile and choose grade content | Linked caregiver and project owner for support | Supabase PostgreSQL; region to be confirmed   | While active; delete within 30 days if no active caregiver link remains, subject to final review | Caregiver deletion flow                                             |
+| Attempts/progress          | Topic-level progress                      | Linked caregiver and active learner session    | Supabase PostgreSQL; region to be confirmed   | While learner profile active                                                                     | Delete with learner under retention rule                            |
+| Feedback note              | Content review                            | Project owner only                             | Supabase PostgreSQL; region to be confirmed   | 12 months then delete/anonymise                                                                  | Request via Privacy Notice contact                                  |
+| Consent record             | Record guardian consent/notice version    | Caregiver and project owner                    | Supabase PostgreSQL; region to be confirmed   | Account duration plus legally required period; confirm exact requirement before production       | Request via Privacy Notice contact; retain only if legally required |
+
+**Consent wording:** Unticked checkbox at caregiver sign-up: “I confirm
+that I am 18 or older and the parent or legal guardian responsible for
+this learner. I have read the Privacy Notice and consent to the
+processing of my and the learner’s information for learning progress.”
+Legal sufficiency must be reviewed before production.
+
+**Privacy Notice:** Available from S2 during sign-up and S10 after
+sign-in. Explain collected information, purpose, access, storage region,
+retention, deletion requests and privacy contact.
+
+**Under-18 users:** Learners cannot self-register. Caregiver
+creates/approves the profile and gives consent before learner
+information is stored. Obtain facilitator/legal review before a
+real-child pilot.
+
+**Cross-border storage:** Supabase region is not yet selected. Before
+production, choose a region and disclose the actual storage country in
+the Privacy Notice; assess POPIA cross-border requirements.
+
+# 13. Assumptions, risks, open questions and milestones
+
+## 13.1 Assumptions
+
+- Sepedi explanations help some learners understand selected Mathematics
+  topics. Check with 5–10 learners and caregivers/teachers.
+
+- Caregiver-managed learner sessions are workable without independent
+  child passwords. Test; revise if account switching causes
+  privacy/usability problems.
+
+- Eight topics with three questions each are enough to demonstrate the
+  core loop. Test a complete lesson/practice/progress flow.
+
+- Teacher-reviewed content is more reliable for this MVP than automatic
+  generation. Ask a fluent Sepedi speaker and Mathematics educator to
+  review samples.
+
+## 13.2 Risks
+
+| **Risk**                                                             | **Likelihood** | **Impact** | **Mitigation**                                                                                  |
+|----------------------------------------------------------------------|----------------|------------|-------------------------------------------------------------------------------------------------|
+| Incorrect Sepedi translation or maths explanation                    | Medium         | High       | Review by fluent Sepedi speaker and Mathematics educator before publishing                      |
+| Child data creates privacy obligations                               | Medium         | High       | Minimise data, caregiver consent, RLS, disclose storage region, facilitator review before pilot |
+| Scope expands to transcription, full syllabus and teacher dashboards | High           | High       | Keep as future features; build F1–F5 first                                                      |
+| Prepaid data/intermittent internet interrupts use                    | Medium         | Medium     | Text-first lessons, no video, explicit offline messages and reconnect tests                     |
+| Progress status mistaken for school grade/diagnosis                  | Medium         | Medium     | Label as practice guidance; state it does not replace teacher assessment                        |
+
+## 13.3 Open questions
+
+Student details confirmed: author/student name is Bao Kekana; no student
+number is available or required for this draft. GitHub username
+confirmed as Bao992, but the GitHub repository has not been created, so
+no repository URL is available. Before status can be Approved, the
+author must confirm course code/cohort and facilitator/reviewer from
+course instructions, and add the original concept link only if the
+course requires it.  
+Design clarification for Stitch: S3 contains an “Add learner” action,
+but the 8.1 inventory does not list a dedicated Add Learner screen or
+learner-pairing modal. Do not invent this interface in Stitch; keep a
+TODO/placeholder and confirm whether the flow is intentionally out of
+scope or should be added to the PRD.  
+Stitch review note: the generated design variants include some
+unapproved content (for example extra language options, weekly reports,
+curriculum claims, offline downloads, and extra account settings). These
+are not accepted product requirements. Keep only requirements in this
+PRD; do not treat generated mock-up additions as scope changes unless
+reviewed and recorded in a future change-log entry.
+
+## 13.4 Milestones
+
+| **Milestone**        | **What is finished**                                  | **Where**                        | **Proposed target date** |
+|----------------------|-------------------------------------------------------|----------------------------------|--------------------------|
+| M0 Idea submitted    | MathsBridge concept document submitted                | Author to add link if required   | Done                     |
+| M1 PRD approved      | Facilitator-reviewed PRD, status Approved             | \`docs/PRD.md\`                  | 30 Oct 2026              |
+| M2 Design ready      | Style guide and all 12 screens/modals checked         | Design file link to be added     | 4 Nov 2026               |
+| M3 MASTER.md ready   | Build plan checked against PRD and template checklist | \`MASTER.md\`                    | 6 Nov 2026               |
+| M4 MVP built         | Must features work in browser                         | Repository/demo link to be added | 20 Nov 2026              |
+| M5 Tested and demoed | All T- tests passed or documented; demo presented     | Test checklist link to be added  | 27 Nov 2026              |
+
+Dates are proposed planning targets and must be adjusted to the course
+schedule.
+
+# 14. Using your PRD with AI
+
+Run these steps only after facilitator approval.
+
+**Step 0 — Style guide:** Paste Sections 9 and 8.3 into the design tool:
+
+“You are a senior UI designer. Using ONLY the design values and shared
+components in this PRD, create a one-page style guide for MathsBridge:
+colour swatches with hex codes, text sizes, spacing, buttons, text
+fields, cards, header, toast, offline banner and empty-state block. Do
+not design app screens yet. Do not add colours, fonts or components not
+listed in the PRD.”
+
+Step 1 — Generate screens one at a time: Provide Section 2.1, Section
+8.1, Section 8.4, Section 9, the relevant screen specification and
+checked style guide. Prompt:
+
+“You are a senior UI/UX designer. Design the exact MathsBridge screen
+named in the specification for a responsive web app at 390px wide. Reuse
+the style guide and shared components exactly. Include every listed
+element and exact label. Design Normal, Empty, Loading, Error, Offline
+and Success states where specified. Do not invent screens, buttons or
+features. If a detail is missing, list it as TODO instead of guessing.”
+
+After all screens, compare colours, spacing, text size, labels, headers
+and components. Resolve every TODO in the PRD and regenerate affected
+screens.
+
+**Step 2 — Generate MASTER.md:** Attach the approved PRD and final
+screen links. Require the plan to use F#, BR#, US#, S#, M# and T- IDs;
+include schema, RLS, design tokens, test data, phases and Definition of
+Done. “Clarifications needed” must be empty before build phases are
+generated.
+
+**Step 3 — Build phase by phase:** Save docs/PRD.md and MASTER.md in
+GitHub. Ask the coding assistant to build Phase 1 only, run the app,
+check T- criteria, commit and stop. Continue only after the previous
+phase passes.
+
+**Step 4 — Final check:** Compare the built app with Sections 6, 8 and
+9, record mismatches, update the PRD/change log, then regenerate only
+affected screens or build plan.
+
+# 15. Submission checklist
+
+**Draft checklist:** Items marked pending must be completed before
+setting Status to In review. This PRD is not facilitator-approved.
+
+- ☑ No template guidance, “Why this matters” lines or copied Instagram
+  example content remains in this PRD.
+
+- [ ] Confirm course code/cohort and facilitator/reviewer if required;
+  add the original concept link if requested. No student number is
+  available or required for this draft. Create the GitHub repository
+  only when development setup begins.
+
+- ☑ Pitch follows the required pattern and is ≤20 words; problem
+  statement includes a numeric validation plan.
+
+- ☑ Six key terms are defined and used consistently.
+
+- ☑ Three personas are linked to roles; permissions and admin approach
+  are stated.
+
+- ☑ Three measurable goals and six non-goals are included.
+
+- ☑ Five Must features, two Should features, 12 full screens and 2
+  modals (including S11 Log In and S12 Forgot Password) are defined.
+
+- ☑ Business rules BR1–BR11 are numbered and referenced.
+
+- ☑ Notifications section says None in v1.
+
+- ☑ Account decisions, caregiver consent and under-18 access are
+  documented.
+
+- ☑ Every Must/Should feature has a story with two criteria, including
+  an unhappy path.
+
+- ☑ Seven edge cases are listed.
+
+- ☑ Flows cover Must features and navigation map includes every
+  screen/modal.
+
+- ☑ Screen specifications include layouts, actions, states and sample
+  content.
+
+- [ ] Verify all colour contrast ratios before approval.
+
+- ☑ Entities, fields, relationships, status changes, reference data and
+  seed data are described.
+
+- [ ] Confirm package versions, repository URL and Supabase region
+  before MASTER.md generation.
+
+- [ ] Review caregiver consent wording, deletion retention and
+  child-data processing with facilitator before real-child pilot.
+
+- [ ] Confirm content reviewer before publishing lessons.
+
+- [ ] Close Section 13.3 administrative items before changing status to
+  Approved.
+
+**Consistency check:** Each feature F1–F7 maps to stories; stories map
+to screens; screen names are consistent across inventory, flows and
+specifications. BR6 is the progress calculation rule used throughout.
+IDs are unique. Some operational choices (especially learner pairing
+implementation and production retention/legal wording) must be validated
+before approval/build.
+
+## Peer review
+
+| **Reviewer name**            | **Date**        | **One-sentence summary**          |
+|------------------------------|-----------------|-----------------------------------|
+| To be completed by classmate | To be completed | To be completed after peer review |
+
+# 16. Glossary
+
+| **Term**      | **Meaning**                                                                                                                          |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| CAPS          | Curriculum and Assessment Policy Statement used by South African schools; selected app topics are mapped to grade-level Mathematics. |
+| MVP           | Minimum viable product: smallest version that tests the main idea.                                                                   |
+| PRD           | Product Requirements Document: specification of what will be built and how it behaves.                                               |
+| POPIA         | Protection of Personal Information Act, South Africa’s personal-information law.                                                     |
+| RLS           | Row-Level Security: database rules restricting which records a signed-in user may access.                                            |
+| SAST          | South Africa Standard Time, UTC+2.                                                                                                   |
+| Supabase Auth | Service used to manage caregiver accounts and sessions.                                                                              |
+| Attempt       | One submitted answer stored with correctness and submission time.                                                                    |
+| Topic status  | Rule-based practice indicator, not a school mark or diagnosis.                                                                       |
+
+Version 0.5 — Clarification and decision addendum
+
+**Date: 04 November 2026 \| Status: Draft — Pending Facilitator
+Approval**
+
+Purpose: respond to the Melsoft review feedback by recording decisions
+made after PRD v0.4. This addendum must be read together with the
+original PRD. It does not imply facilitator, legal, privacy or design
+approval. Where this addendum explicitly updates a v0.4 assumption or
+open item, the v0.5 decision below is the current working direction; all
+other v0.4 requirements remain in force.
+
+# A. Approval and document status
+
+PRD v0.4 has not been formally approved by the facilitator; no response
+has been received. Therefore v0.5 remains Draft — Pending Facilitator
+Approval. The product owner has approved the working decisions in this
+addendum, but those decisions are not represented as facilitator
+approval.
+
+The app has not been built and the GitHub repository has not yet been
+created. The Stitch designs remain drafts and are not approved.
+
+# B. Confirmed feature priorities
+
+| **Feature**                               | **Priority** | **Decision**         |
+|-------------------------------------------|--------------|----------------------|
+| F1 — Caregiver access                     | Must         | Retain v0.4 priority |
+| F2 — Grade and topic selection            | Must         | Retain v0.4 priority |
+| F3 — Bilingual lesson                     | Must         | Retain v0.4 priority |
+| F4 — Practice and feedback                | Must         | Retain v0.4 priority |
+| F5 — Topic progress analysis              | Must         | Retain v0.4 priority |
+| F6 — Caregiver progress and home activity | Should       | Retain v0.4 priority |
+| F7 — Lesson feedback                      | Should       | Retain v0.4 priority |
+
+# C. Caregiver Add Learner and pairing flow
+
+1.  Caregiver signs in and selects “Add Learner”.
+
+2.  Caregiver enters the learner name and grade.
+
+3.  MathsBridge creates the learner profile and a one-time pairing code.
+
+4.  Learner opens MathsBridge on their own device and enters the pairing
+    code.
+
+5.  After successful pairing, the learner creates a 4-digit PIN and
+    enters a learner session.
+
+6.  The learner session can access only that learner’s own records. The
+    learner can access published lessons, answer questions and view
+    their own progress.
+
+7.  On later visits, the learner selects their profile and enters the
+    PIN. The caregiver can reset the PIN, view linked progress or unlink
+    the learner.
+
+8.  Pairing code expires after 24 hours if unused, can be used once
+    only, and is invalidated immediately after successful use.
+
+The user flow is approved as the working product flow. The exact
+screen/modal layout, labels, visual states and final copy must be
+reconciled with approved Stitch exports; no visual design is approved
+yet.
+
+# D. Learner PIN and session security
+
+- The learner creates a 4-digit PIN on first successful pairing; later
+  access uses learner profile selection plus PIN.
+
+- PINs must never be stored in plain text. Store a securely derived
+  one-way hash and verify it in trusted server/database logic.
+
+- The learner session must be scoped to the selected learner and must
+  not permit access to another learner’s records.
+
+- Caregiver PIN reset must use an authorised caregiver action and
+  invalidate the prior PIN/session as appropriate.
+
+- Apply server-side failed-attempt limits and temporary blocking. Exact
+  attempt threshold, lockout duration, PIN hashing parameters, reset
+  verification and session expiry are not yet specified and must be
+  completed before release.
+
+# E. Pairing-code security policy
+
+| **Control**      | **Working decision**                                                                                                                               |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| Format           | 8-character random alphanumeric code; exclude easily confused O/0/I/1.                                                                             |
+| Generation       | Cryptographically secure random generator.                                                                                                         |
+| Storage          | Store only a hash of the code; never persist or log the raw code.                                                                                  |
+| Expiry           | 24 hours after creation if unused.                                                                                                                 |
+| Use              | Single-use; invalidate immediately after successful pairing.                                                                                       |
+| Abuse protection | Limit failed attempts and temporarily block repeated failures. Exact threshold and block duration require a security specification before release. |
+| Unlink           | Require caregiver confirmation; revoke caregiver access immediately while preserving learner history.                                              |
+
+# F. Business rules and edge cases
+
+Retain BR1–BR11 exactly as defined in PRD v0.4 Section 4.4 and retain
+all seven edge cases exactly as defined in PRD v0.4 Section 6.2. These
+rules are the baseline for implementation and tests. BR8 is extended by
+this addendum to include the learner PIN/session access model and
+pairing-code security policy above. No other BR is silently changed.
+
+The seven edge cases remain: internet drops while opening lesson;
+repeated Check answer submission; topic archived while old page is open;
+caregiver unlinks learner while S9 is open; published lesson has no
+questions; feedback request fails; pairing code expired/used. Preserve
+their exact user-facing messages and expected behaviours from Section
+6.2.
+
+# G. Database model and indexing
+
+Retain the nine existing entities from PRD 10.1: Caregiver, Learner,
+CaregiverLearner, Topic, Lesson, PracticeQuestion, Attempt, HomeActivity
+and LessonFeedback. Do not introduce a tenth entity solely for
+PIN/session functionality. Incorporate the required learner PIN/session
+attributes and controls into the existing learner/access design. Exact
+physical column names/types and migration details must be reviewed
+before implementation; preserve all existing v0.4 field definitions,
+nullability, limits, defaults, uniqueness and delete behaviour unless a
+documented v0.5 change is approved.
+
+Baseline index requirements: index foreign-key columns used by joins and
+RLS/access checks; caregiver–learner link lookup paths; Topic
+grade/publication status/topic order; and Attempt lookup/aggregation by
+learner, question and submission time to support topic progress.
+Developers may add further indexes when the query pattern and
+justification are documented and supported by actual access patterns or
+performance evidence. Avoid redundant indexes and account for write
+overhead.
+
+# H. Development workflow and testing
+
+| **Area**           | **Approved working direction**                                                                                                |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| Local development  | Supabase CLI with Docker. Pin the CLI version used by the project and document exact commands after compatibility validation. |
+| Schema management  | Version-controlled SQL migrations committed to Git.                                                                           |
+| Database testing   | pgTAP for constraints, functions, business rules and RLS allow/deny tests.                                                    |
+| Frontend testing   | Vitest and React Testing Library.                                                                                             |
+| Browser end-to-end | Playwright for full caregiver/learner browser journeys.                                                                       |
+| Hosted frontend    | Vercel; public demonstration URL required.                                                                                    |
+| Backend services   | Hosted Supabase for Auth and PostgreSQL. No separate Express API is introduced in v1.                                         |
+
+# I. Child privacy, POPIA and release gates
+
+- Collect only information needed for the learning experience; obtain
+  appropriate caregiver consent before creating a learner profile.
+
+- Restrict learner information to the authorised learner session and
+  active caregiver–learner links.
+
+- Do not collect learner photographs, precise location, audio recordings
+  or classroom recordings in v1.
+
+- Use fictional records in development, automated tests and public
+  demonstrations.
+
+- Define and disclose the actual storage region, retention period,
+  deletion workflow and privacy contact in the Privacy Notice.
+
+- The Supabase region and final privacy/retention/deletion wording
+  remain subject to facilitator and appropriate privacy/legal review. Do
+  not claim POPIA compliance approval before that review.
+
+# J. Content review and publication
+
+Each lesson must pass a two-stage review before publication: (1) a
+fluent Sepedi speaker reviews language, terminology, grammar and
+clarity; (2) a Mathematics educator reviews mathematical accuracy,
+worked examples, questions and answers. Record both approvals. An
+authorised content administrator publishes only after both reviews. The
+named reviewers have not yet been confirmed.
+
+# K. Success and error message additions
+
+| **Situation**                | **Approved baseline wording**                                       |
+|------------------------------|---------------------------------------------------------------------|
+| Pairing successful           | Learner linked successfully.                                        |
+| Invalid pairing code         | This code is invalid. Check the code and try again.                 |
+| Expired or used pairing code | This code has expired or has already been used. Ask for a new code. |
+| Incorrect learner PIN        | Incorrect PIN. Please try again.                                    |
+| PIN reset successful         | Learner PIN reset successfully.                                     |
+| Unlink confirmation          | Are you sure you want to unlink this learner?                       |
+| Unlink successful            | Learner unlinked successfully.                                      |
+
+Retain the existing PRD messages for general errors, expired caregiver
+sessions and permission failures. The pairing-code expired/used wording
+above is consistent with the existing Section 6.2 edge case. Map the
+additional messages to final approved designs and avoid contradictory
+duplicates.
+
+# L. Design status and tokens
+
+The Stitch project is not approved. All current screens remain Draft —
+Pending Approval. Do not lock or invent colours, typography, font sizes,
+spacing, radii or screen layouts. After approval, extract the actual
+design tokens from final exports and verify the PRD accessibility
+requirements: body text at least 16px, small text at least 12px, text
+contrast at least 4.5:1, touch targets at least 44×44px, keyboard
+operation, visible labels/errors and no colour-only status cues.
+
+# M. Remaining items requiring confirmation
+
+| **Item**                       | **What remains**                                                                                         | **Owner / gate**                         |
+|--------------------------------|----------------------------------------------------------------------------------------------------------|------------------------------------------|
+| Facilitator approval           | Review PRD v0.5 and provide approval or amendments.                                                      | Facilitator                              |
+| Stitch design approval         | Final exports for S1–S12 and M1–M2, mapping, exact tokens and contrast review.                           | Product owner / facilitator              |
+| PIN and pairing abuse controls | Exact thresholds, lockout durations, reset verification, PIN hash parameters and learner session expiry. | Technical/security review                |
+| Database schema detail         | Review exact learner PIN/session storage fields and migration constraints.                               | Technical review                         |
+| Content reviewers              | Confirm named fluent Sepedi speaker and Mathematics educator.                                            | Product owner / facilitator              |
+| Privacy and data region        | Select Supabase region; approve Privacy Notice, retention and deletion wording.                          | Facilitator / appropriate privacy review |
+| Course deliverables            | Check course instructions for any requirement beyond IMPLEMENTATION_PLAN.md.                             | Product owner / course instructions      |
+
+# N. Change log
+
+| **Version** | **Date**    | **Sections**                                                                        | **Change summary**                                                                                                                                                                                                                                                                                                                                        | **Status**                           |
+|-------------|-------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------|
+| v0.5        | 04 Nov 2026 | Addendum A–M; updates to Sections 2.4, 4.4, 6.2, 7, 10, 11, 12 and 13 as applicable | Recorded caregiver Add Learner/pairing flow; learner 4-digit PIN session; pairing-code security; nine-entity model; index approach; Supabase CLI/Docker/pgTAP; Playwright; Vercel public demo; privacy gates; two-stage content review; approved baseline messages; design status and decision register. Retained original BR1–BR11 and seven edge cases. | Draft — Pending Facilitator Approval |
+# MathsBridge PRD v0.5 — Clarification and decision addendum
+
+**Date:** 04 November 2026  
+**Status:** Draft — Pending Facilitator Approval
+
+Read together with the original PRD v0.4. All v0.4 requirements remain in force except where this addendum explicitly records a working update. Product-owner approval is not facilitator, legal, privacy or design approval.
+
+## A. Approval status
+
+The facilitator has not responded to v0.4. Treat it as not formally approved. The app and GitHub repository have not been built/created. Stitch designs remain unapproved drafts.
+
+## B. Feature priorities
+
+| Feature | Priority |
+|---|---|
+| F1 Caregiver access | Must |
+| F2 Grade and topic selection | Must |
+| F3 Bilingual lesson | Must |
+| F4 Practice and feedback | Must |
+| F5 Topic progress analysis | Must |
+| F6 Caregiver progress and home activity | Should |
+| F7 Lesson feedback | Should |
+
+## C. Add Learner and pairing flow
+
+1. Caregiver signs in and selects **Add Learner**.
+2. Caregiver enters learner name and grade.
+3. MathsBridge creates the learner profile and one-time pairing code.
+4. Learner opens MathsBridge on their device and enters the code.
+5. On first successful pairing, learner creates a 4-digit PIN and enters a learner session.
+6. Learner session is restricted to that learner's records.
+7. Later visits use profile selection + PIN. Caregiver can reset PIN, view progress or unlink.
+8. Pairing code is single-use and expires after 24 hours unused.
+
+Screen layout, exact UI states and final copy await approved Stitch exports.
+
+## D. Learner PIN/session security
+
+- Four-digit PIN created at first pairing; later profile + PIN.
+- Never store PIN in plain text; use secure one-way hashing and trusted verification.
+- Session scoped to one learner.
+- Caregiver can reset PIN.
+- Failed-attempt limits and temporary blocking required; exact thresholds, lockout duration, hash parameters, reset verification and session expiry remain to be specified before release.
+
+## E. Pairing-code security
+
+| Control | Decision |
+|---|---|
+| Format | 8 random alphanumeric characters; exclude O/0/I/1 |
+| Generation | Cryptographically secure random generator |
+| Storage | Hash only; never store/log raw code |
+| Expiry | 24 hours unused |
+| Use | Single-use; invalidate immediately on success |
+| Abuse | Failed-attempt limits and temporary block; exact thresholds TBD |
+| Unlink | Caregiver confirmation; immediate access revocation; preserve learner history |
+
+## F. Business rules and edge cases
+
+Retain BR1–BR11 and all seven edge cases from v0.4 unchanged. Extend BR8 to include the learner PIN/session model and pairing security. Map every rule and edge case to tests.
+
+## G. Data model and indexes
+
+Retain nine entities: Caregiver, Learner, CaregiverLearner, Topic, Lesson, PracticeQuestion, Attempt, HomeActivity and LessonFeedback. Incorporate PIN/session attributes into the existing learner/access design; no tenth entity is approved. Preserve v0.4 fields, limits, nullability, defaults, uniqueness and delete behaviour pending schema review.
+
+Baseline indexes: foreign keys used in joins/RLS; caregiver–learner link lookup; Topic grade/status/order; Attempt learner/question/submission-time paths for progress. Further indexes may be added with documented query justification and performance evidence; avoid redundant indexes.
+
+## H. Development and testing
+
+- Supabase CLI + Docker for local development; pin CLI version and document commands after compatibility validation.
+- SQL migrations committed to Git.
+- pgTAP for database constraints/functions/business rules/RLS.
+- Vitest + React Testing Library for frontend.
+- Playwright for browser E2E.
+- Vercel frontend + hosted Supabase; public demo URL required.
+
+## I. Privacy and child-data gates
+
+Data minimisation; caregiver consent before learner profile creation; restrict access; no learner photos, precise location, audio or classroom recordings in v1; use fictional demo/test data. Supabase region and final Privacy Notice, retention and deletion wording require facilitator and appropriate privacy/legal review. Do not claim POPIA approval before review.
+
+## J. Content review
+
+Two-stage review before publication: fluent Sepedi speaker checks language/terminology/clarity; Mathematics educator checks mathematical accuracy/examples/questions. Record both approvals. Named reviewers remain unconfirmed.
+
+## K. Message additions
+
+| Situation | Baseline message |
+|---|---|
+| Pairing successful | Learner linked successfully. |
+| Invalid code | This code is invalid. Check the code and try again. |
+| Expired/used code | This code has expired or has already been used. Ask for a new code. |
+| Incorrect PIN | Incorrect PIN. Please try again. |
+| PIN reset | Learner PIN reset successfully. |
+| Unlink confirmation | Are you sure you want to unlink this learner? |
+| Unlink success | Learner unlinked successfully. |
+
+Retain existing v0.4 messages and map all copy to approved designs.
+
+## L. Design status
+
+Stitch designs remain Draft — Pending Approval. Do not invent or lock design tokens. After approval, extract actual colours, typography, sizes, spacing, radii and verify accessibility: body ≥16px, small text ≥12px, contrast ≥4.5:1, targets ≥44×44px, keyboard access and visible labels/errors.
+
+## M. Remaining confirmation items
+
+1. Facilitator approval/amendments to v0.5.
+2. Final Stitch exports, screen mapping, tokens and contrast review.
+3. PIN/pairing lockout thresholds, hash parameters, reset verification and session expiry.
+4. Exact PIN/session schema fields and migrations.
+5. Named Sepedi and Mathematics reviewers.
+6. Supabase region and approved privacy/retention/deletion wording.
+7. Confirm whether course instructions require any deliverable beyond `IMPLEMENTATION_PLAN.md`.
+
+## N. Change log
+
+| Version | Date | Summary | Status |
+|---|---|---|---|
+| v0.5 | 04 Nov 2026 | Recorded pairing flow, learner PIN/session, code security, schema/index approach, local tooling/testing, Vercel, privacy gates, content review, messages and design status. Retained BR1–BR11 and seven edge cases. | Draft — Pending Facilitator Approval |

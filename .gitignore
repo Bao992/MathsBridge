@@ -1,0 +1,28 @@
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+coverage/
+
+# Local development files
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+
+# Local tools and editor files
+.vscode/
+.idea/
+
+# Test and temporary files
+playwright-report/
+test-results/
+*.tmp
