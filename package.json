@@ -1,0 +1,27 @@
+{
+  "name": "mathsbridge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bao992/MathsBridge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Bao992/MathsBridge/issues"
+  },
+  "homepage": "https://github.com/Bao992/MathsBridge#readme",
+  "devDependencies": {
+    "supabase": "^3.0.0"
+  }
+}

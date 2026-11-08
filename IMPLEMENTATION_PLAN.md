@@ -1130,9 +1130,9 @@ The following decisions were discussed and approved by the product owner on 04 N
 
 | # | Topic | Working decision | Status / remaining condition |
 | --- | --- | --- | --- |
-| 1 | PRD v0.4 approval | Facilitator has not responded; treat v0.4 as not formally approved. | Recorded; PRD v0.5 remains Draft — Pending Facilitator Approval. |
-| 2 | Stitch designs | Current Stitch designs are not approved. | Approval gate: final exports for S1–S12/M1–M2, screen mapping and design-token/contrast review. |
-| 3 | Add Learner/pairing | Caregiver signs in → Add Learner → enters learner name and grade → system creates learner profile and one-time code → learner enters code on own device → learner session. Caregiver can later view progress or unlink. | Working flow approved; screen/modal design and final copy await approved Stitch designs. Code expires in 24 hours and is single-use. |
+| 1 | PRD v0.5 approval | Facilitator has formally approved PRD v0.5 for implementation. | **Closed for implementation.** This does not imply privacy/legal or production approval. |
+| 2 | Stitch designs | Facilitator approved the MathsBridge Stitch design basis; product owner personally reviewed and approved the designs. | **Approval gate closed.** Use the approved S1–S12/M1–M2 designs as supplied. Extract the approved tokens and verify contrast as implementation work; do not alter approved design decisions. |
+| 3 | Add Learner/pairing | Caregiver signs in → Add Learner → enters learner name and grade → system creates learner profile and one-time code → learner enters code on own device → learner session. Caregiver can later view progress or unlink. | Working flow approved; code expires in 24 hours and is single-use. The approved design set still marks the Add Learner destination pending on S3 and supplies no pairing screen/modal. Resolve the missing screen/copy specification before implementing that flow; this does not block Phase 1. |
 | 4 | F1–F7 priorities | F1–F5 Must; F6–F7 Should, retained from PRD v0.4 Section 4.1. | Approved; implement Must before Should. |
 | 5 | BR1–BR11 and edge cases | Retain existing PRD v0.4 BR1–BR11 and all seven Section 6.2 edge cases as baseline; do not silently rewrite. Expand BR8 to cover learner PIN/session access. | Approved baseline; reconcile each rule to explicit acceptance/database tests. |
 | 6 | Pairing-code security | 8-character random alphanumeric excluding O/0/I/1; cryptographically secure generator; hash stored, single-use, 24-hour expiry, invalidate after use; rate-limit failed attempts and temporarily block repeated failures; caregiver confirmation before unlink. | Working policy approved. Exact failure thresholds and temporary-block duration require security specification before release. |
@@ -1145,13 +1145,17 @@ The following decisions were discussed and approved by the product owner on 04 N
 | 13 | Child privacy / POPIA | Data minimisation, caregiver consent, restricted access, defined retention/deletion, no learner photos/location/audio/classroom recordings; Supabase region and final legal wording require review. | Working safeguards approved. Facilitator and appropriate privacy/legal review still required; do not claim compliance approval. |
 | 14 | Content review | Two-stage review: fluent Sepedi speaker and Mathematics educator; both approvals before content administrator publishes. | Workflow approved. Named reviewers still to be confirmed. |
 | 15 | Success/error messages | Retain PRD messages and add approved baseline copy for pairing success, invalid/expired code, PIN failure/reset and unlink confirmation/success. | Wording approved as baseline; map to final screens and reconcile duplicates/edge-case priority. |
-| 16 | Design tokens | Do not invent or lock tokens; Stitch designs remain unapproved. | Approval gate: extract actual colours, type, sizes, spacing, radii and verify contrast from approved exports. |
+| 16 | Design tokens | Use the facilitator- and product-owner-approved Stitch designs as the source of design tokens. | Approval closed. During Phase 1, extract the actual colours, type, sizes, spacing and radii from the approved exports and verify contrast; do not substitute invented values. |
 | 17 | Deliverable format | `IMPLEMENTATION_PLAN.md` is the working required plan; no separate `MASTER.md` unless course instructions explicitly require it. | Working decision based on user's understanding; independently confirm only if course instructions say otherwise. |
+| 18 | Phase 1 start readiness | Facilitator has approved PRD v0.5 and the design basis; the product owner has personally approved the supplied designs. | **Approval blockers closed.** Remaining verified setup items are Node.js/npm, Docker/WSL 2 and Supabase CLI (see Section 4.2 and the setup review below). Phase 1 has not started. Extract tokens and verify contrast during Phase 1 before treating S1 design matching as complete. The phase still starts only when the human explicitly says “Start Phase 1”. |
+| 19 | Local toolchain readiness | **Previous environment check:** Node.js v22.21.0, npm 10.9.4 and Git 2.54.0; NVM for Windows 1.2.2 was installed. WSL, Docker Desktop and Supabase CLI were unavailable at that time. **Verified setup completed 08 Nov 2026:** Node.js 24.22.2; npm 11.19.1; Git 2.54.0; WSL 2 with Ubuntu 24.04; Docker Desktop 4.98.0 with Docker Engine 29.9.2; Supabase CLI 3.0.0 installed locally as a development dependency. The MathsBridge Supabase cloud project (reference `dtovmrlbfxhogbawpndd`) is Healthy, and the local repository was successfully linked using `npx supabase link`. | **Verified ready for Phase 1 tooling.** Preserve this environment record; Phase 1 has not started and still requires the human to explicitly say “Start Phase 1”. |
+| 20 | Missing Add Learner/pairing design | Approved S3 displays “TODO: DESTINATION PENDING”; no separate Add Learner, pairing-code or first-PIN screen/modal is present in the approved S1–S12/M1–M2 set. | Not a Phase 1 blocker. Before implementing the Add Learner/pairing flow, provide the missing approved design specification and exact labels/states, mapped to a screen ID or explicitly approved as a new screen. Do not invent these details. |
 
 ### Build-blocking / approval-gate checklist
 
-- [ ] Facilitator confirms PRD v0.5 or provides requested amendments.
-- [ ] Final Stitch exports and screen mapping approved; exact tokens and contrast checked.
+- [x] Facilitator confirms PRD v0.5 or provides requested amendments (formally approved for implementation).
+- [x] Final Stitch exports and screen mapping approved (facilitator and product owner).
+- [ ] Extract exact approved design tokens and verify contrast during Phase 1 before marking design matching complete.
 - [ ] PIN hashing, failed-attempt limits, temporary lockout, reset verification and learner-session expiry specified and tested.
 - [ ] Pairing-code failed-attempt threshold and temporary-block duration specified and tested.
 - [ ] Exact schema for learner PIN/session fields reviewed without altering the nine-entity model or existing PRD fields unintentionally.
@@ -1159,7 +1163,7 @@ The following decisions were discussed and approved by the product owner on 04 N
 - [ ] Supabase region, privacy notice, retention/deletion wording and POPIA/child-data review completed before production or real-child pilot.
 - [ ] Course instructions checked for any additional `MASTER.md` requirement.
 
-Do not begin implementation phases that depend on an unresolved gate. Work that is safe and independent (for example, repository scaffolding or local tooling) may proceed only after the facilitator confirms the PRD baseline and the human explicitly starts Phase 1. No real-child data may be used before privacy gates are closed.
+Do not begin implementation phases that depend on an unresolved gate. Phase 1 may begin after its local toolchain prerequisites are ready and the human explicitly says “Start Phase 1”. Later phases remain subject to their own unresolved gates. No real-child data may be used before privacy gates are closed.
 
 ---
 
