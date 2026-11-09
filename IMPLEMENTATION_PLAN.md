@@ -116,6 +116,7 @@ MathsBridge is a responsive browser-based Mathematics learning companion for Sep
 | --- | --- | --- |
 | Frontend | React 19 + Vite 7 | Confirm compatibility at setup; pin exact resolved versions. |
 | Language | TypeScript 5.x | Pin installed version in lockfile. |
+| Routing | Browser History API | Product owner approved native `pushState`/`popstate` routing for Phase 1 on 09 Nov 2026; do not add a routing package. |
 | Styling | Tailwind CSS 4 | Confirm Vite integration compatibility before setup. |
 | Backend/API | Supabase JS v2 + PostgreSQL functions and policies | No separate Express API in v1. |
 | Database | Supabase PostgreSQL | Migrations, constraints, indexes, RLS and trusted database functions. |
@@ -124,6 +125,7 @@ MathsBridge is a responsive browser-based Mathematics learning companion for Sep
 | Hosting | Vercel | Approved hosting direction; public demonstration URL required. Final production deployment remains gated by privacy and region review. |
 | Package manager/runtime | npm 11.x, Node.js 24.x | Pin actual versions; do not silently change. |
 | Testing | Vitest + React Testing Library; pgTAP; Playwright | Vitest/RTL for frontend, pgTAP for PostgreSQL/RLS, Playwright for browser journeys. |
+| Linting | ESLint | Approved by product owner for Phase 1 on 09 Nov 2026; configure the minimum JavaScript, TypeScript and React checks and document supporting packages. |
 | Version control | Git + GitHub | Repository not yet created. |
 
 ### 4.2 Prerequisites on the computer
@@ -593,35 +595,35 @@ Do not invent missing T-US IDs. Map BR1–BR11 and each of the seven source-defi
 | T-C-1 | Component | `tests/components/Button.test.tsx` | Button renders approved label and disabled/loading states. |
 | T-S1-1 | Component | `tests/components/WelcomePage.test.tsx` | S1 shows exact PRD heading, body and two navigation actions. |
 
-- [ ] All tests above are written, run, and fail for the expected reason.
+- [x] All tests above were written first, run, and failed for the expected reason.
 
 **Step 2: Backend (Green)**
 
-- [ ] No application backend in this phase. Create only the approved environment/configuration boundary for Supabase; do not connect real data until Phase 2.
+- [x] No application backend in this phase. Create only the approved environment/configuration boundary for Supabase; do not connect real data until Phase 2.
 
 **Step 3: Frontend (Green)**
 
-- [ ] Scaffold React 19 + Vite 7 + TypeScript and Tailwind CSS 4; pin actual versions.
-- [ ] Add router and app shell without inventing navigation beyond PRD 7.2.
-- [ ] Add token file after values are confirmed from final designs.
-- [ ] Build S1 to its approved Stitch design, including normal/error/offline states.
-- [ ] Add shared Button and OfflineBanner components with tests.
+- [x] Scaffold React 19 + Vite 7 + TypeScript and Tailwind CSS 4; pin actual versions.
+- [x] Add router and app shell without inventing navigation beyond PRD 7.2.
+- [x] Add token file after values are confirmed from final designs; verify the approved text, button and background combinations for contrast.
+- [x] Build S1 to its approved Stitch design, including normal/error/offline states.
+- [x] Add shared Button and OfflineBanner components with tests.
 
 **Step 4: Refactor and full check**
 
-- [ ] Run lint, typecheck, all tests and production build.
-- [ ] Confirm `.env` ignored and `.env.example` contains placeholders only.
+- [x] Run lint, typecheck, all tests and production build.
+- [x] Confirm `.env` ignored and `.env.example` contains placeholders only.
 
 **Step 5: Manual checks (human)**
 
-- [ ] Open S1 at 360px, tablet and desktop widths; compare side by side with Stitch export.
-- [ ] Keyboard navigate all S1 controls and verify minimum touch targets.
+- [x] Open S1 at 360px, tablet and desktop widths; compare side by side with Stitch export.
+- [x] Keyboard navigate all S1 controls and verify minimum touch targets.
 
 **Definition of Done**
 
-- [ ] All Phase 1 tests pass; earlier tests pass.
-- [ ] S1 required states implemented and manually checked.
-- [ ] Versions and commands recorded; Progress log updated.
+- [x] All Phase 1 tests pass; earlier tests pass.
+- [x] S1 required states implemented and manually checked.
+- [x] Versions and commands recorded; Progress log updated.
 
 **Commit message:** `Phase 1: Foundation`
 
@@ -1121,6 +1123,7 @@ Do not invent missing T-US IDs. Map BR1–BR11 and each of the seven source-defi
 | Phase | Date | Status | Automated tests (passed / total) | Commit | Notes |
 | --- | --- | --- | --- | --- | --- |
 | 0 | 04 Nov 2026 | Planning / approvals pending | Not started | — | Revised plan v0.2; no repository or app exists. PRD v0.5 and designs await formal approval; remaining gates listed in Section 18. |
+| 1 | 09 Nov 2026 | Approved and formally closed | 11 / 11 across 5 files | Not committed (per instruction) | Lint, typecheck, coverage command and production build passed. Coverage reported 93.65% line coverage for the files included in its report only; this is not whole-application coverage. Manual S1 responsive, keyboard, language indicator, offline, direct-load/refresh and unknown-route checks passed. Mobile header spacing adjustment accepted. Non-blocking favicon 404 remains. |
 
 ---
 
@@ -1147,15 +1150,18 @@ The following decisions were discussed and approved by the product owner on 04 N
 | 15 | Success/error messages | Retain PRD messages and add approved baseline copy for pairing success, invalid/expired code, PIN failure/reset and unlink confirmation/success. | Wording approved as baseline; map to final screens and reconcile duplicates/edge-case priority. |
 | 16 | Design tokens | Use the facilitator- and product-owner-approved Stitch designs as the source of design tokens. | Approval closed. During Phase 1, extract the actual colours, type, sizes, spacing and radii from the approved exports and verify contrast; do not substitute invented values. |
 | 17 | Deliverable format | `IMPLEMENTATION_PLAN.md` is the working required plan; no separate `MASTER.md` unless course instructions explicitly require it. | Working decision based on user's understanding; independently confirm only if course instructions say otherwise. |
-| 18 | Phase 1 start readiness | Facilitator has approved PRD v0.5 and the design basis; the product owner has personally approved the supplied designs. | **Approval and environment prerequisites are complete.** Phase 1 has not started. Its remaining work is the Phase 1 scope in Section 13, including TDD setup/component/S1 tests, app scaffolding, S1 and shared components, design-token extraction/contrast verification, and the phase checks. None of that work is claimed complete here. No fictional test data or `seed.sql` is claimed; database seed/test-data work belongs to the later database phase. This row does not authorize a start: the human must explicitly say “Start Phase 1”. |
+| 18 | Phase 1 completion status | Facilitator has approved PRD v0.5 and the design basis; the product owner has personally approved the supplied designs. | **Phase 1 was formally approved and closed by the product owner on 09 November 2026.** Lint, typecheck, all 11 tests across 5 files, coverage command and production build passed. Coverage is 93.65% line coverage for the files included in its report only, not whole-application coverage. The S1 responsive review (including the accepted 360px header spacing adjustment), keyboard focus, static Sep/Eng indicator, offline indicator, direct loading/refresh for `/login` and `/sign-up`, and unknown-route fallback were verified. A favicon 404 remains non-blocking. No fictional test data or `seed.sql` is claimed; database seed/test-data work belongs to the later database phase. Phase 2 remains unstarted and requires explicit “Start Phase 2”. |
 | 19 | Local toolchain readiness | **Previous environment check:** Node.js v22.21.0, npm 10.9.4 and Git 2.54.0; NVM for Windows 1.2.2 was installed, and WSL, Docker Desktop and Supabase CLI were unavailable at that time. **Verified setup completed 08 Nov 2026:** Node.js 24.22.2; npm 11.19.1; Git 2.54.0; Ubuntu 24.04 installed under WSL 2; Docker Desktop 4.98.0 and Docker Engine 29.9.2 verified working from PowerShell; Supabase CLI 3.0.0 installed locally as a development dependency. A separate development project, MathsBridge-Dev (reference `dffcsmeewndzatxhfort`), is Healthy in West EU (Ireland), and the local repository is linked to it using Supabase CLI 3.0.0. The original MathsBridge project remains untouched and is reserved for production. | **Verified ready for Phase 1 tooling.** These environment and project prerequisites are complete. This record does not claim fictional test data, application scaffolding, tests or `seed.sql` exist. |
 | 20 | Missing Add Learner/pairing design | Approved S3 displays “TODO: DESTINATION PENDING”; no separate Add Learner, pairing-code or first-PIN screen/modal is present in the approved S1–S12/M1–M2 set. | Not a Phase 1 blocker. Before implementing the Add Learner/pairing flow, provide the missing approved design specification and exact labels/states, mapped to a screen ID or explicitly approved as a new screen. Do not invent these details. |
+| 21 | Phase 1 lint tool | Product owner approved ESLint on 09 Nov 2026; Section 4.1 now lists it as an approved tool. | **Resolved.** Use the minimum compatible ESLint setup for JavaScript, TypeScript and React; document supporting packages in the project setup README. |
+| 22 | Phase 1 design-token harmonisation | Product owner approved this Phase 1 palette: app background `#F7F9FC` and primary accent `#0F766E` retain the PRD 9.1 values; additional named tokens retain sampled Stitch values: subtle background `#F9F9FF`, panel/card surface `#F1F3FF`, deep accent `#00695E`, and soft accent fill `#99EFE5`. Preserve PRD primary `#2457A7` as its own token for the S1 blue primary action. Do not alter the approved Stitch designs or PRD. | **Resolved by product-owner approval.** Use these values and semantic names in the Phase 1 token file. S1 combinations checked: `#2457A7`/white button text 7.01:1; `#00695E`/`#99EFE5` pill text 4.98:1; `#172033`/`#F7F9FC` body text 15.42:1; `#2457A7`/`#F1F3FF` badge text 6.34:1. These pass 4.5:1. Avoid `#0F766E` text on `#99EFE5` (4.13:1); use the already-approved deep accent `#00695E` for text/icons on the soft fill, as S1 does. No palette correction is proposed. |
+| 23 | Phase 1 routing implementation | Product owner approved the browser History API without an additional routing dependency on 09 Nov 2026; Section 4.1 records this choice. | **Resolved by product-owner approval.** Implement only the routing foundation required for Phase 1, including history navigation, direct path loading, refresh handling and a fallback; do not add later-phase screens or routes. |
 
 ### Build-blocking / approval-gate checklist
 
 - [x] Facilitator confirms PRD v0.5 or provides requested amendments (formally approved for implementation).
 - [x] Final Stitch exports and screen mapping approved (facilitator and product owner).
-- [ ] Phase 1 task (not an entry blocker): extract exact approved design tokens and verify contrast before marking design matching complete.
+- [x] Phase 1 task (not an entry blocker): extract exact approved design tokens and verify contrast before marking design matching complete.
 - [ ] PIN hashing, failed-attempt limits, temporary lockout, reset verification and learner-session expiry specified and tested.
 - [ ] Pairing-code failed-attempt threshold and temporary-block duration specified and tested.
 - [ ] Exact schema for learner PIN/session fields reviewed without altering the nine-entity model or existing PRD fields unintentionally.
@@ -1163,7 +1169,7 @@ The following decisions were discussed and approved by the product owner on 04 N
 - [ ] Supabase region, privacy notice, retention/deletion wording and POPIA/child-data review completed before production or real-child pilot.
 - [ ] Course instructions checked for any additional `MASTER.md` requirement.
 
-Do not begin implementation phases that depend on an unresolved gate. Phase 1's approval and environment prerequisites are recorded as complete above; its implementation and checks remain outstanding. Phase 1 may begin only when the human explicitly says “Start Phase 1”. Later phases remain subject to their own unresolved gates. No real-child data may be used before privacy gates are closed.
+Do not begin implementation phases that depend on an unresolved gate. Phase 1 is formally closed as of 09 November 2026. Phase 2 remains unstarted and may begin only with the human's explicit authorisation (“Start Phase 2”). Later phases remain subject to their own unresolved gates. No real-child data may be used before privacy gates are closed.
 
 ---
 
